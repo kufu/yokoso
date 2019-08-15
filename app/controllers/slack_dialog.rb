@@ -28,38 +28,40 @@ module SlackDialog
       times.push(time_on)
       times.push(time_half)
     end
+    
+    messages = open('./config/messages.yml', 'r') { |f| YAML.load(f) }
 
     # dialog form
     dialog = {
       trigger_id: trigger_id,
       dialog: {
-        title: '入館受付申請',
-        callback_id: 'reception_grand_tower',
-        submit_label: '送信',
+        title: messages['dialog']['tilte'],
+        callback_id: 'callback_id',
+        submit_label: messages['dialog']['submit'],
         elements: [
           {
-            label: '来訪日',
+            label: messages['dialog']['recept_date'],
             type: 'select',
             name: 'date',
             options: dates,
           },
           {
-            label: '訪問時間',
+            label: messages['dialog']['recept_time'],
             type: 'select',
             name: 'time',
             options: times,
           },
           {
-            label: '来訪者会社名',
+            label: messages['dialog']['recept_company'],
             type: 'text',
             name: 'company_name',
-            placeholder: '会社名がない場合は「面接」「なし」等',
+            placeholder: messages['dialog']['recept_company_placeholder'],
           },
           {
-            label: '来訪者名',
+            label: messages['dialog']['recept_name'],
             type: 'text',
             name: 'name',
-            placeholder: '「様」をつけると入館証が「様様」になるよ！',
+            placeholder: messages['dialog']['recept_name_placeholder'],
           },
         ]
       }
