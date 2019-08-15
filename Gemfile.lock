@@ -1,22 +1,99 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (5.2.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    addressable (2.6.0)
+      public_suffix (>= 2.0.2, < 4.0)
+    concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.13.1)
+      faraday (>= 0.7.4, < 1.0)
+    gli (2.18.1)
+    hashie (3.6.0)
+    http (4.1.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.0)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.1.1)
+    http_parser.rb (0.6.0)
+    i18n (1.6.0)
+      concurrent-ruby (~> 1.0)
+    mechanize (2.7.6)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (>= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
+    mime-types (3.2.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.0331)
+    mini_portile2 (2.4.0)
+    minitest (5.11.3)
+    multipart-post (2.1.1)
     mustermann (1.0.3)
+    net-http-digest_auth (1.4.1)
+    net-http-persistent (3.0.1)
+      connection_pool (~> 2.2)
+    nokogiri (1.10.3)
+      mini_portile2 (~> 2.4.0)
+    ntlm-http (0.1.1)
+    public_suffix (3.1.1)
     rack (2.0.7)
     rack-protection (2.0.5)
       rack
+    redis (4.1.2)
+    sidekiq (5.2.7)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
+    slack-ruby-client (0.14.2)
+      activesupport
+      faraday (>= 0.9)
+      faraday_middleware
+      gli
+      hashie
+      websocket-driver
+    thread_safe (0.3.6)
     tilt (2.0.9)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
+    webrobots (0.1.2)
+    websocket-driver (0.7.1)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  http
+  mechanize
+  sidekiq
   sinatra
+  slack-ruby-client
 
 BUNDLED WITH
    2.0.2
