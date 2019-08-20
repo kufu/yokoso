@@ -31,6 +31,10 @@
     "COMPANY_TEL": {
       "description": "会社の電話番号 ex) 03-1234-5678",
       "value": ""
+    },
+    "REDIS_PROVIDER": {
+      "description": "変更不要",
+      "value": "REDIS_URL"
     }
   },
   "addons": [
