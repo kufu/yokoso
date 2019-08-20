@@ -1,0 +1,47 @@
+{
+  "name": "Yokoso",
+  "description": "🚪 Slack integration for https://srd-gate.com/03/login.cgi",
+  "repository": "https://github.com/kufu/yokoso",
+  "image": "heroku/ruby",
+  "env": {
+    "SLACK_TOKEN": {
+      "description": "Slack App OAuth Access Token",
+      "value": "xoxp-"
+    },
+    "SLACK_CHANNEL": {
+      "description": "Slack への通知チャンネル (only public) ex) #reception",
+      "value": ""
+    },
+    "SRD_GATE_USERNAME": {
+      "description": "srd-gate.com の認証ユーザー",
+      "value": ""
+    },
+    "SRD_GATE_PASSWORD": {
+      "description": "srd-gate.com の認証パスワード",
+      "value": ""
+    },
+    "MAIL_ADDRESS_HOST": {
+      "description": "申請結果を受け取るメール",
+      "value": ""
+    },
+    "MAIL_ADDRESS_WEBHOOK": {
+      "description": "申請結果を受け取る Email Webhook 用のアドレス",
+      "value": ""
+    },
+    "COMPANY_TEL": {
+      "description": "会社の電話番号 ex) 03-1234-5678",
+      "value": ""
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-redis:hobby-dev"
+    },
+    {
+      "plan": "papertrail"
+    }
+  ],
+  "keywords": [
+    "slack"
+  ]
+}
