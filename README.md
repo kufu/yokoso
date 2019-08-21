@@ -12,14 +12,10 @@ Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
   - Heroku
   - Redis
 - 以下の環境変数は後で設定するので空で大丈夫です
-  - SLACK_TOKEN
-  - MAIL_ADDRESS_WEBHOOK
-
-### Heroku
+  - `SLACK_TOKEN`
+  - `MAIL_ADDRESS_WEBHOOK`
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-### ローカル
 
 ```
 heroku local -e .env
@@ -30,11 +26,11 @@ heroku local -e .env
 - Slack App を新規作成して各種設定をする
 - https://api.slack.com/apps
 
-## Interactive Components
+### Interactive Components
 
-## Slash Commands
+### Slash Commands
 
-## OAuth & Permissions
+### OAuth & Permissions
 
 - 権限を追加する
     - channels:history
@@ -44,11 +40,11 @@ heroku local -e .env
     - commands
 - Token は後でサーバサイド環境変数へセットする
 
-## App Install
+### App Install
 
 - ワークスペースへのインストールを忘れずに実施
 
-# Email Webhook
+## Email Webhook
 
 - メール受信 -> Webhook を作成
 - 受信したメールの body を json で post すれば OK
@@ -56,8 +52,8 @@ heroku local -e .env
     - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
 - Webhook 用メールアドレスは後でサーバサイド環境変数へセットする
 
-# サーバーサイド環境変数の再設定
+## サーバーサイド環境変数の再設定
 
 - 以下の環境変数を設定する
-  - SLACK_TOKEN
-  - MAIL_ADDRESS_WEBHOOK
+  - `SLACK_TOKEN`
+  - `MAIL_ADDRESS_WEBHOOK`
