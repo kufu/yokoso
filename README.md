@@ -2,6 +2,8 @@
 
 Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
 
+<img src="https://github.com/kufu/yokoso/blob/images/sample_animation.gif?raw=true" width="480px">
+
 # セットアップ
 
 ## サーバサイド
@@ -15,7 +17,11 @@ Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
   - `SLACK_TOKEN`
   - `MAIL_ADDRESS_WEBHOOK`
 
+### 起動
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+ローカル実行はこちら
 
 ```
 heroku local -e .env
@@ -25,10 +31,19 @@ heroku local -e .env
 
 - Slack App を新規作成して各種設定をする
 - https://api.slack.com/apps
+- <img src="https://github.com/kufu/yokoso/blob/images/slack_app_create.png?raw=true" width="480px">
 
 ### Interactive Components
 
+- 設定をオンにしてサーバのアドレスを入力する
+- `https://{{server_url}}/app/interactive`
+- <img src="https://github.com/kufu/yokoso/blob/images/slack_app_intractive.png?raw=true" width="480px">
+
 ### Slash Commands
+
+- スラッシュコマンドの設定を追加する
+- `https://{{server_url}}/app/dialog`
+- <img src="https://github.com/kufu/yokoso/blob/images/slack_app_dialog.png?raw=true" width="480px">
 
 ### OAuth & Permissions
 
@@ -36,9 +51,13 @@ heroku local -e .env
     - channels:history
     - chat:write:bot
     - users:read
-- スラッシュコマンドを設定していれば以下は自動で追加されているはず
     - commands
+      - スラッシュコマンドを設定していれば自動で追加されているはず
+    - <img src="https://github.com/kufu/yokoso/blob/images/slakc_app_scope.png?raw=true" width="480px">
 - Token は後でサーバサイド環境変数へセットする
+  - <img src="https://github.com/kufu/yokoso/blob/images/slack_app_token.png?raw=true" width="480px">
+
+
 
 ### App Install
 
