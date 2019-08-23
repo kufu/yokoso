@@ -80,9 +80,11 @@ heroku local -e .env
 ## Email Webhook
 
 - メール受信 -> Webhook を作成
-- 受信したメールの body を json で post すれば OK
+- 受信したメール本文を json 形式の body 要素として post すれば OK
+- webhook アドレスは `https://{{server_url}}/app/notification`
 - サービスは何でも良い
-    - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
+  - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
+  - 参考: <img src="https://github.com/kufu/yokoso/blob/images/zapier.png?raw=true" width="480px">
 - Webhook 用メールアドレスは後でサーバサイド環境変数へセットする
 
 ## サーバーサイド環境変数の再設定
@@ -90,4 +92,3 @@ heroku local -e .env
 - 以下の環境変数を設定する
   - `SLACK_TOKEN`
   - `MAIL_ADDRESS_WEBHOOK`
-
