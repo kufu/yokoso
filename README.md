@@ -1,8 +1,13 @@
 # Yokoso
 
-Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
+- Slack とビル来客システム https://srd-gate.com/03/login.cgi を連携させるツール
+- 概要は [SmartHR Tech Blog](https://tech.smarthr.jp/entry/2019/06/28/134701)
 
 <img src="https://github.com/kufu/yokoso/blob/images/sample_animation.gif?raw=true" width="480px">
+
+# 全体像
+
+<img src="https://github.com/kufu/yokoso/blob/images/diagram.png?raw=true" width="640px">
 
 # セットアップ
 
@@ -19,9 +24,20 @@ Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
 
 ### 起動
 
+#### サーバ実行の場合
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-ローカル実行はこちら
+- 環境変数を設定してデプロイする
+- リソース割り当て
+  - <img src="https://github.com/kufu/yokoso/blob/images/heroku_dynos.png?raw=true" width="480px">
+
+#### ローカル実行の場合
+
+- `sample.env` -> `.env` に名前変更して、環境変数を設定する
+- `localhost:5000` で起動するのでグローバルからローカルに通信をフォワーディングする
+  - 参考: [Using ngrok to develop locally for Slack](https://api.slack.com/tutorials/tunneling-with-ngrok)
+  - 参考: [FORWARD](https://forwardhq.com/)
 
 ```
 heroku local -e .env
@@ -57,8 +73,6 @@ heroku local -e .env
 - Token は後でサーバサイド環境変数へセットする
   - <img src="https://github.com/kufu/yokoso/blob/images/slack_app_token.png?raw=true" width="480px">
 
-
-
 ### App Install
 
 - ワークスペースへのインストールを忘れずに実施
@@ -66,9 +80,11 @@ heroku local -e .env
 ## Email Webhook
 
 - メール受信 -> Webhook を作成
-- 受信したメールの body を json で post すれば OK
+- 受信したメール本文を json 形式の body 要素として post すれば OK
+- webhook アドレスは `https://{{server_url}}/app/notification`
 - サービスは何でも良い
-    - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
+  - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
+  - 参考: <img src="https://github.com/kufu/yokoso/blob/images/zapier.png?raw=true" width="480px">
 - Webhook 用メールアドレスは後でサーバサイド環境変数へセットする
 
 ## サーバーサイド環境変数の再設定

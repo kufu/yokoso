@@ -21,15 +21,15 @@
       "value": ""
     },
     "MAIL_ADDRESS_HOST": {
-      "description": "申請結果を受け取るメール",
+      "description": "申請結果を受け取るメールアドレス（ホストに届くメール、 webhook のアドレスとは分ける）",
       "value": ""
     },
     "MAIL_ADDRESS_WEBHOOK": {
-      "description": "申請結果を受け取る Email Webhook 用のアドレス",
+      "description": "申請結果を受け取る Email Webhook 用のアドレス（ゲストに届くメール）",
       "value": ""
     },
     "COMPANY_TEL": {
-      "description": "会社の電話番号 ex) 03-1234-5678",
+      "description": "会社の電話番号（申請に必要） ex) 03-1234-5678",
       "value": ""
     }
   },
