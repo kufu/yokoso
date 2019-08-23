@@ -24,9 +24,20 @@
 
 ### 起動
 
+#### サーバ実行の場合
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-ローカル実行はこちら
+- 環境変数を設定してデプロイする
+- リソース割り当て
+  - <img src="https://github.com/kufu/yokoso/blob/images/heroku_dynos.png?raw=true" width="480px">
+
+#### ローカル実行の場合
+
+- `sample.env` -> `.env` に名前変更して、環境変数を設定する
+- `localhost:5000` で起動するのでグローバルからローカルに通信をフォワーディングする
+  - 参考: [Using ngrok to develop locally for Slack](https://api.slack.com/tutorials/tunneling-with-ngrok)
+  - 参考: [FORWARD](https://forwardhq.com/)
 
 ```
 heroku local -e .env
@@ -79,5 +90,4 @@ heroku local -e .env
 - 以下の環境変数を設定する
   - `SLACK_TOKEN`
   - `MAIL_ADDRESS_WEBHOOK`
-- リソース割り当て
-  - <img src="https://github.com/kufu/yokoso/blob/images/heroku_dynos.png?raw=true" width="480px">
+
