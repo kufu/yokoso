@@ -5,6 +5,10 @@
 
 <img src="https://github.com/kufu/yokoso/blob/images/sample_animation.gif?raw=true" width="480px">
 
+# 全体像
+
+<img src="https://github.com/kufu/yokoso/blob/images/diagram.png?raw=true" width="640px">
+
 # セットアップ
 
 ## サーバサイド
