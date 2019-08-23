@@ -1,6 +1,7 @@
 # Yokoso
 
-Slack と https://srd-gate.com/03/login.cgi を連携させるツール。
+- Slack とビル来客システム https://srd-gate.com/03/login.cgi を連携させるツール
+- 概要は [SmartHR Tech Blog](https://tech.smarthr.jp/entry/2019/06/28/134701)
 
 <img src="https://github.com/kufu/yokoso/blob/images/sample_animation.gif?raw=true" width="480px">
 
@@ -57,8 +58,6 @@ heroku local -e .env
 - Token は後でサーバサイド環境変数へセットする
   - <img src="https://github.com/kufu/yokoso/blob/images/slack_app_token.png?raw=true" width="480px">
 
-
-
 ### App Install
 
 - ワークスペースへのインストールを忘れずに実施
@@ -76,3 +75,5 @@ heroku local -e .env
 - 以下の環境変数を設定する
   - `SLACK_TOKEN`
   - `MAIL_ADDRESS_WEBHOOK`
+- リソース割り当て
+  - <img src="https://github.com/kufu/yokoso/blob/images/heroku_dynos.png?raw=true" width="480px">
