@@ -10,3 +10,4 @@ gem 'sidekiq'
 gem 'sinatra'
 gem 'slack-ruby-client'
 gem 'config'
+gem 'nokogiri', ">= 1.10.4"
