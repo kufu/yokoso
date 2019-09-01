@@ -17,7 +17,7 @@ intarctive:
   <<: *common
 notification:
   text_notification: "入館受付が完了しました :tada:"
-  text_guide: |- # RECEPT_DATE, RECEPT_ID は置換部分
+  text_guide_jap: |- # RECEPT_DATE, RECEPT_ID は置換部分
     ```
     ◆日時
     RECEPT_DATE
@@ -33,10 +33,26 @@ notification:
     ◆ビル入館方法
     ①セキュリティゲート前の受付機にバーコードをかざしていただく、もしくは入館IDを入力して下さい。
     ②受付機より「入館証」が発券されます。
-    （人数分の発券が必要になります）
+    （複数名でご来社の場合は人数分の発券をお願いいたします。同一バーコード/IDをご利用いただけます）
     ③入館証のQRコードをゲートにかざし入館します。
 
     ※注意点
     「入館証」はご退館時まで必要です。大切にお持ち下さい。
+    ```
+  text_guide_eng: |- # RECEPT_DATE, RECEPT_ID は置換部分
+    ```
+    <Appointed day>
+    RECEPT_DATE
+
+    <Address>
+    1-2-3 xxx, Minato-ku, Tokyo 123-4567
+
+    <How to enter>
+    Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
+    You can print out as many tickets as you need with this ID/barcode.
+
+    These admission tickets are required to enter and exit the building gates, so please hold on to them.
+
+    RECEPT_ID
     ```
   <<: *common
