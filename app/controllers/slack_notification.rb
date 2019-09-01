@@ -13,17 +13,6 @@ module SlackNotification
     recept_date = mail_body.match(/\d{4}\/\d{2}\/\d{2}.+\d{2}:\d{2}/)[0]
     recept_id = mail_body.match(/(?:ID:)(\d+)(?:\s+\*)/)[1]
 
-    day_of_the_week_eg2jp = {
-      'Sun' => '日',
-      'Mon' => '月',
-      'Tue' => '火',
-      'Wed' => '水',
-      'Thu' => '木',
-      'Fri' => '金',
-      'Sat' => '土',
-    }
-    recept_date = recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
-
     client = Slack::Web::Client.new(
       token: ENV['SLACK_TOKEN']
     )
@@ -59,14 +48,29 @@ module SlackNotification
     )
 
     barcode_url = "https://barcode.tec-it.com/barcode.ashx?data=#{recept_id}&code=Code128"
-    text_guide = messages['notification']['text_guide']
-    text_guide.gsub!('RECEPT_DATE', "#{recept_date}")
-    text_guide.gsub!('RECEPT_ID', "#{recept_id}\n#{barcode_url}")
+    text_guide_jap = messages['notification']['text_guide_jap']
+    text_guide_eng = messages['notification']['text_guide_eng']
+
+    text_guide_jap.gsub!('RECEPT_ID', "#{recept_id}\n#{barcode_url}")
+    text_guide_eng.gsub!('RECEPT_ID', "#{recept_id}\n#{barcode_url}")
+    
+    day_of_the_week_eg2jp = {
+      'Sun' => '日',
+      'Mon' => '月',
+      'Tue' => '火',
+      'Wed' => '水',
+      'Thu' => '木',
+      'Fri' => '金',
+      'Sat' => '土',
+    }
+    recept_date_jap = recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
+    text_guide_jap.gsub!('RECEPT_DATE', "#{recept_date_jap}")
+    text_guide_eng.gsub!('RECEPT_DATE', "#{recept_date}")
 
     res = client.chat_postMessage(
       icon_emoji: ':office:',
       channel: res.channel,
-      text: text_guide,
+      text: "#{text_guide_jap}\n#{text_guide_eng}",
       attachments: [
         {
           title: "バーコード/Barcode",
