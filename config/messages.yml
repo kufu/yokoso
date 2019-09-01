@@ -56,8 +56,8 @@ notification:
     RECEPT_DATE
 
     <Address>
-    1-2-3 xxx, Minato-ku, Tokyo 123-4567
-
+    Sumitomo Fudosan Roppongi Grand Tower 39F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6239
+    
     <How to enter>
     Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
     You can print out as many tickets as you need with this ID/barcode.
@@ -65,5 +65,9 @@ notification:
     These admission tickets are required to enter and exit the building gates, so please hold on to them.
 
     RECEPT_ID
+
+    Take the elevator on your right to the 29th floor, then transfer to the elevator that takes you to the 39th floor.
+
+    Please send me an email when you arrive on the 39th floor.
     ```
   <<: *common
