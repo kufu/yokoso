@@ -2,7 +2,6 @@
   "name": "Yokoso",
   "description": "🚪 Slack integration for https://srd-gate.com/03/login.cgi",
   "repository": "https://github.com/kufu/yokoso",
-  "image": "heroku/ruby",
   "env": {
     "SLACK_TOKEN": {
       "description": "Slack App OAuth Access Token",
@@ -31,17 +30,20 @@
     "COMPANY_TEL": {
       "description": "会社の電話番号（申請に必要） ex) 03-1234-5678",
       "value": ""
+    },
+    "JEMALLOC_ENABLED": {
+      "description": "jemallocを常に使用する",
+      "value": "true"
+    },
+    "MALLOC_ARENA_MAX": {
+      "description": "Sidekiqが使用するメモリを少なくする",
+      "value": "2"
     }
   },
-  "addons": [
-    {
-      "plan": "heroku-redis:hobby-dev"
-    },
-    {
-      "plan": "papertrail"
-    }
+  "addons": [{ "plan": "heroku-redis:hobby-dev" }, { "plan": "papertrail" }],
+  "buildpacks": [
+    { "url": "https://github.com/gaffneyc/heroku-buildpack-jemalloc" },
+    { "url": "heroku/ruby" }
   ],
-  "keywords": [
-    "slack"
-  ]
+  "keywords": ["slack"]
 }
