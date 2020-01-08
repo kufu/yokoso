@@ -92,3 +92,11 @@ heroku local -e .env
 - 以下の環境変数を設定する
   - `SLACK_TOKEN`
   - `MAIL_ADDRESS_WEBHOOK`
+
+## Code of Conduct
+
+Everyone interacting in the yokoso project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/kufu/yokoso/blob/master/CODE_OF_CONDUCT.md).
+
+## License
+
+The gem is available as open source under the terms of the [Apache License 2.0](https://github.com/kufu/yokoso/blob/master/LICENSE).
