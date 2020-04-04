@@ -15,4 +15,5 @@ gem 'nokogiri', ">= 1.10.4"
 group :development, :test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'webmock'
 end
