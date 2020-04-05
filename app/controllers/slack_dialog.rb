@@ -78,7 +78,7 @@ module SlackDialog
 
     res = https.request(req)
 
-    return
+    return ""
   end
 
   module_function :run

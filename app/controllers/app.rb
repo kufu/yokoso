@@ -7,6 +7,10 @@ class Yokoso < Sinatra::Base
 
   helpers SlackDialog, SlackInteractiveMessage, SlackNotification
 
+  get('/') do
+    "Hello World"
+  end
+
   post('/dialog') do
     SlackDialog.run(request)
   end
