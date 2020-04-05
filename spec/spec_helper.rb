@@ -1,4 +1,6 @@
+require 'rspec'
 require 'rack/test'
+require 'webmock/rspec'
 # require production code
 Dir[File.join(File.dirname(__FILE__), "../app/**/*.rb")].each { |f| require f }
 
