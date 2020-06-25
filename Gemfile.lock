@@ -87,7 +87,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
     public_suffix (3.1.1)
-    rack (2.0.8)
+    rack (2.2.3)
     rack-protection (2.0.5)
       rack
     redis (4.1.2)
