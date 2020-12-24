@@ -23,9 +23,9 @@ notification:
     RECEPT_DATE
 
     ◆場所
-    〒106-6239
+    〒106-6217
     東京都港区六本木3-2-1
-    住友不動産六本木グランドタワー 39F
+    住友不動産六本木グランドタワー 17F
     https://office.sumitomo-rd.co.jp/building/detail/minato/roppongi_3
 
     南北線｢六本木一丁目駅｣西改札直結
@@ -40,9 +40,8 @@ notification:
     ②受付機より「入館証」が発券されます。
     （複数名でご来社の場合は人数分の発券をお願いいたします。同一バーコード/IDをご利用いただけます）
     ③入館証のQRコードをゲートにかざし入館します。
-    ④ゲート右手のシャトルエレベータで29Fへ。
-    ⑤29Fからは36-40F停車のエレベーターにて39Fへお越しください。
-    ⑥SmartHR受付のiPadより担当者をお呼び出しください。
+    ④ゲート左手15F〜20F用のエレベータにて17Fへお越しください。
+    ⑤SmartHR受付のiPadより担当者をお呼び出しください。
 
     ◆SmartHRオフィスの行き方
     https://shanaiho.smarthr.co.jp/n/n901fe6fc0e28
@@ -56,7 +55,7 @@ notification:
     RECEPT_DATE
 
     <Address>
-    Sumitomo Fudosan Roppongi Grand Tower 39F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6239
+    Sumitomo Fudosan Roppongi Grand Tower 17F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6217
 
     <How to enter>
     Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
@@ -66,6 +65,6 @@ notification:
 
     RECEPT_ID
 
-    Take the elevator on your right to the 29th floor, then transfer to the elevator that takes you to the 39th floor.
+    Take the elevator on your left to the 17th floor.
     ```
   <<: *common
