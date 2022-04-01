@@ -1,17 +1,13 @@
 require 'json'
 require 'slack-ruby-client'
+require_relative '..//model/email'
 
 module SlackNotification
   def run(request)
 
     json = JSON.parse(request.body.read)
     mail_body = json['body']
-    mail_body = mail_body.gsub("\\n", "")
-  
-    slack_id = mail_body.match(/(?:To:【)(.+)(?:】)/)[1]
-    recept_name = mail_body.match(/(?:】)(.+)(?:\s様)/)[1]
-    recept_date = mail_body.match(/\d{4}\/\d{2}\/\d{2}.+\d{2}:\d{2}/)[0]
-    recept_id = mail_body.match(/(?:ID:)(\d+)(?:\s+\*)/)[1]
+    email = Email.new(mail_body)
 
     client = Slack::Web::Client.new(
       token: ENV['SLACK_TOKEN']
@@ -22,24 +18,24 @@ module SlackNotification
     res = client.chat_postMessage(
       icon_emoji: messages['notification']['icon'],
       channel: ENV['SLACK_CHANNEL'],
-      text: "<@#{slack_id}> #{messages['notification']['text_notification']}",
+      text: "<@#{email.slack_id}> #{messages['notification']['text_notification']}",
       attachments: [
         {
           color: "#36a64f",
           fields: [
             {
               title: messages['notification']['recept_name'],
-              value: "#{recept_name} 様",
+              value: "#{email.recept_name} 様",
               short: true
             },
             {
               title: messages['notification']['recept_datetime'],
-              value: recept_date,
+              value: email.recept_date,
               short: true
             },
             {
               title: messages['notification']['recept_id'],
-              value: recept_id,
+              value: email.recept_id,
               short: true
             }
           ]
@@ -47,12 +43,12 @@ module SlackNotification
       ]
     )
 
-    barcode_url = "https://barcode.tec-it.com/barcode.ashx?data=#{recept_id}&code=Code128"
+    barcode_url = "https://barcode.tec-it.com/barcode.ashx?data=#{email.recept_id}&code=Code128"
     text_guide_jap = messages['notification']['text_guide_jap']
     text_guide_eng = messages['notification']['text_guide_eng']
 
-    text_guide_jap.gsub!('RECEPT_ID', "#{recept_id}\n#{barcode_url}")
-    text_guide_eng.gsub!('RECEPT_ID', "#{recept_id}\n#{barcode_url}")
+    text_guide_jap.gsub!('RECEPT_ID', "#{email.recept_id}\n#{barcode_url}")
+    text_guide_eng.gsub!('RECEPT_ID', "#{email.recept_id}\n#{barcode_url}")
     
     day_of_the_week_eg2jp = {
       'Sun' => '日',
@@ -63,9 +59,9 @@ module SlackNotification
       'Fri' => '金',
       'Sat' => '土',
     }
-    recept_date_jap = recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
+    recept_date_jap = email.recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
     text_guide_jap.gsub!('RECEPT_DATE', "#{recept_date_jap}")
-    text_guide_eng.gsub!('RECEPT_DATE', "#{recept_date}")
+    text_guide_eng.gsub!('RECEPT_DATE', "#{email.recept_date}")
 
     res = client.chat_postMessage(
       icon_emoji: ':office:',
