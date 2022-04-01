@@ -26,7 +26,16 @@ describe Email do
     email = described_class.new(email_html_body)
 
     it "slack_id" do
-      expect(email.slack_id).to eq nil
+      expect(email.slack_id).to eq "U9999999999"
+    end
+    it "recept_name" do
+      expect(email.recept_name).to eq "株式会社smarthr hoge piyo"
+    end
+    it "slack_id" do
+      recept_date(email.recept_date).to eq "2022/03/31(Thu) 18:00"
+    end
+    it "recept_id" do
+      expect(email.recept_id).to eq "12345678901"
     end
   end
 end
