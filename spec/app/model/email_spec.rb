@@ -21,6 +21,9 @@ describe Email do
       <BR>
       ■　バーコード/Barcode<BR>
       入館ID/Guest ID:12345678901<BR>
+      <BR>
+      　　<img src='12345678901.BMP' width='200'><BR>
+      <BR>
     EMAIL_BODY
 
     email = described_class.new(email_html_body)

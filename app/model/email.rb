@@ -18,6 +18,6 @@ class Email
   end
 
   def recept_id
-    @params.match(/(?:ID:)(\d+)(?:\s+\*)/)[1]
+    @params.match(/(?:ID:)(\d+)/)[1]
   end
 end
