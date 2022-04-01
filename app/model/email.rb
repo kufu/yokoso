@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Email
-  def initalize(params)
+  def initialize(params)
     @params = params
   end
 
@@ -18,6 +18,6 @@ class Email
   end
 
   def recept_id
-    
+
   end
 end
