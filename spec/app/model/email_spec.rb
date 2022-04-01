@@ -31,8 +31,8 @@ describe Email do
     it "recept_name" do
       expect(email.recept_name).to eq "株式会社smarthr hoge piyo"
     end
-    it "slack_id" do
-      recept_date(email.recept_date).to eq "2022/03/31(Thu) 18:00"
+    it "recept_date" do
+      expect(email.recept_date).to eq "2022/03/31(Thu) 18:00"
     end
     it "recept_id" do
       expect(email.recept_id).to eq "12345678901"
