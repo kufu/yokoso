@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/kufu/yokoso" }
 
+ruby File.read(".ruby-version").rstrip
+
 gem 'config'
 gem 'http'
 gem 'mechanize'
