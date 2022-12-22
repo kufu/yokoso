@@ -10,7 +10,7 @@ gem 'config'
 gem 'http'
 gem 'mechanize'
 gem 'nokogiri', ">= 1.10.4"
-gem "rspec", "~> 3.11"
+gem "rspec", "~> 3.12"
 gem 'slack-ruby-client'
 gem 'sidekiq'
 gem 'sinatra'
