@@ -1,0 +1,19 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.5
+  Exclude:
+    - bin/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - vendor/**/*
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

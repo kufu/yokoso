@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require_relative '../../../app/model/email'
+require_relative "../../../app/model/email"
 
 describe Email do
   context "正常系" do

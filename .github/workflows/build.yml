@@ -7,9 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  rspec:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Ruby
@@ -21,3 +20,14 @@ jobs:
       run: bundle install
     - name: Build and test
       run: bundle exec rspec
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
+      - name: Run rubocop
+        run: bundle exec rubocop
