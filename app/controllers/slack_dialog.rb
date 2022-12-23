@@ -12,7 +12,7 @@ module SlackDialog
     # today, today + 1, today + 90
     today = Date.today
     dates = []
-    for i in 0..90 do
+    90.each do |i|
       formatted_date = (today + i).strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][(today + i).wday]
       date = { label: "#{formatted_date} #{wday}", value: formatted_date }
@@ -22,7 +22,7 @@ module SlackDialog
     # Array: hh:mm
     # 08:00, 08:30, ... , 21:00, 21:30
     times = []
-    for i in 8..21 do
+    (8..21).each do |i|
       hour = format("%.2d", i)
       time_on = { label: "#{hour}:00", value: "#{hour}:00" }
       time_half = { label: "#{hour}:30", value: "#{hour}:30" }
