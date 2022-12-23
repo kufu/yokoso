@@ -34,7 +34,7 @@ class ReceptionWorker
     # slack id を会社名につけて登録結果メールに情報を引回す
     # メール受信 webhook を受け取って、登録者にメンションするため
     # 半角記号は使えない仕様なので削除する
-    agent.page.form.field_with(name: "kaisha[]").value = "【" + slack_id + "】" + recept_company_name.gsub(/[[:punct:]]/, "")
+    agent.page.form.field_with(name: "kaisha[]").value = "【#{slack_id}】" + recept_company_name.gsub(/[[:punct:]]/, "")
     agent.page.form.field_with(name: "mei[]").value = recept_visitor_name.gsub(/[[:punct:]]/, "")
     agent.page.form.field_with(name: "kana[]").value = "カナ"
     agent.page.form.field_with(name: "mail[]").value = ENV.fetch("MAIL_ADDRESS_WEBHOOK")

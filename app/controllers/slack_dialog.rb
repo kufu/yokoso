@@ -15,7 +15,7 @@ module SlackDialog
     for i in 0..90 do
       formatted_date = (today + i).strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][(today + i).wday]
-      date = { label: formatted_date + " " + wday, value: formatted_date }
+      date = { label: "#{formatted_date} #{wday}", value: formatted_date }
       dates.push(date)
     end
 
