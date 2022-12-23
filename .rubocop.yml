@@ -1,0 +1,11 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.5
+  Exclude:
+    - bin/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - vendor/**/*
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
