@@ -74,7 +74,7 @@ module SlackDialog
 
     req = Net::HTTP::Post.new(uri.request_uri)
     req["Content-Type"] = "application/json"
-    req["Authorization"] = "Bearer #{ENV['SLACK_TOKEN']}"
+    req["Authorization"] = "Bearer #{ENV.fetch('SLACK_TOKEN')}"
     req.body = dialog.to_json
 
     res = https.request(req)
