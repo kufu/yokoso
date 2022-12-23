@@ -7,5 +7,9 @@ AllCops:
     - spec/spec_helper.rb
     - vendor/**/*
 
+Metrics/BlockLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
 Style/StringLiterals:
   EnforcedStyle: double_quotes
