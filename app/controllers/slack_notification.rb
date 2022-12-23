@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "json"
 require "slack-ruby-client"
 require_relative "..//model/email"
