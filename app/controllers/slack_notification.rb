@@ -61,10 +61,10 @@ module SlackNotification
       "Sat" => "土"
     }
     recept_date_jap = email.recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
-    text_guide_jap.gsub!("RECEPT_DATE", "#{recept_date_jap}")
-    text_guide_eng.gsub!("RECEPT_DATE", "#{email.recept_date}")
+    text_guide_jap.gsub!("RECEPT_DATE", recept_date_jap)
+    text_guide_eng.gsub!("RECEPT_DATE", email.recept_date)
 
-    res = client.chat_postMessage(
+    client.chat_postMessage(
       icon_emoji: ":office:",
       channel: res.channel,
       text: "#{text_guide_jap}\n#{text_guide_eng}",
