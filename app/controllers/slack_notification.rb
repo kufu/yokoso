@@ -11,14 +11,14 @@ module SlackNotification
     email = Email.new(mail_body)
 
     client = Slack::Web::Client.new(
-      token: ENV["SLACK_TOKEN"]
+      token: ENV.fetch("SLACK_TOKEN")
     )
 
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) }
 
     res = client.chat_postMessage(
       icon_emoji: messages["notification"]["icon"],
-      channel: ENV["SLACK_CHANNEL"],
+      channel: ENV.fetch("SLACK_CHANNEL"),
       text: "<@#{email.slack_id}> #{messages['notification']['text_notification']}",
       attachments: [
         {

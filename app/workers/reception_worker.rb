@@ -20,8 +20,8 @@ class ReceptionWorker
     # srd-gate login
     agent = Mechanize.new
     page = agent.get("https://srd-gate.com/03/login.cgi")
-    agent.page.form.field_with(name: "userid").value = ENV["SRD_GATE_USERNAME"]
-    agent.page.form.field_with(name: "passwd").value = ENV["SRD_GATE_PASSWORD"]
+    agent.page.form.field_with(name: "userid").value = ENV.fetch("SRD_GATE_USERNAME")
+    agent.page.form.field_with(name: "passwd").value = ENV.fetch("SRD_GATE_PASSWORD")
     page = agent.page.form.submit
 
     # srd-gate regist page
@@ -37,15 +37,15 @@ class ReceptionWorker
     agent.page.form.field_with(name: "kaisha[]").value = "【" + slack_id + "】" + recept_company_name.gsub(/[[:punct:]]/, "")
     agent.page.form.field_with(name: "mei[]").value = recept_visitor_name.gsub(/[[:punct:]]/, "")
     agent.page.form.field_with(name: "kana[]").value = "カナ"
-    agent.page.form.field_with(name: "mail[]").value = ENV["MAIL_ADDRESS_WEBHOOK"]
-    agent.page.form.field_with(name: "sinseiemail").value = ENV["MAIL_ADDRESS_HOST"]
-    agent.page.form.field_with(name: "sinseitel").value = ENV["COMPANY_TEL"]
+    agent.page.form.field_with(name: "mail[]").value = ENV.fetch("MAIL_ADDRESS_WEBHOOK")
+    agent.page.form.field_with(name: "sinseiemail").value = ENV.fetch("MAIL_ADDRESS_HOST")
+    agent.page.form.field_with(name: "sinseitel").value = ENV.fetch("COMPANY_TEL")
 
     # regist
     page = agent.page.form.submit
 
     client = Slack::Web::Client.new(
-      token: ENV["SLACK_TOKEN"]
+      token: ENV.fetch("SLACK_TOKEN")
     )
 
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) }
