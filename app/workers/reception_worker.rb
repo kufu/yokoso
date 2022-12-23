@@ -48,7 +48,7 @@ class ReceptionWorker
       token: ENV.fetch("SLACK_TOKEN")
     )
 
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) }
+    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
 
     client.chat_postEphemeral(
       icon_emoji: messages["intarctive"]["icon"],

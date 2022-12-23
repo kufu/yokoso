@@ -14,7 +14,7 @@ module SlackNotification
       token: ENV.fetch("SLACK_TOKEN")
     )
 
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) }
+    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
 
     res = client.chat_postMessage(
       icon_emoji: messages["notification"]["icon"],

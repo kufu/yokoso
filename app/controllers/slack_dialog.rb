@@ -30,7 +30,7 @@ module SlackDialog
       times.push(time_half)
     end
 
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) }
+    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
 
     # dialog form
     dialog = {
