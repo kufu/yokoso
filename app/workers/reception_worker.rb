@@ -19,13 +19,13 @@ class ReceptionWorker
 
     # srd-gate login
     agent = Mechanize.new
-    page = agent.get("https://srd-gate.com/03/login.cgi")
+    agent.get("https://srd-gate.com/03/login.cgi")
     agent.page.form.field_with(name: "userid").value = ENV.fetch("SRD_GATE_USERNAME")
     agent.page.form.field_with(name: "passwd").value = ENV.fetch("SRD_GATE_PASSWORD")
-    page = agent.page.form.submit
+    agent.page.form.submit
 
     # srd-gate regist page
-    page = agent.get("https://srd-gate.com/03/sinsei.cgi")
+    agent.get("https://srd-gate.com/03/sinsei.cgi")
 
     # regist parameter
     agent.page.form.field_with(name: "raihoubi").value = recept_date
@@ -42,7 +42,7 @@ class ReceptionWorker
     agent.page.form.field_with(name: "sinseitel").value = ENV.fetch("COMPANY_TEL")
 
     # regist
-    page = agent.page.form.submit
+    agent.page.form.submit
 
     client = Slack::Web::Client.new(
       token: ENV.fetch("SLACK_TOKEN")
