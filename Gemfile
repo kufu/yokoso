@@ -2,17 +2,17 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/kufu/yokoso" }
+git_source(:github) { |_repo_name| "https://github.com/kufu/yokoso" }
 
 ruby File.read(".ruby-version").rstrip
 
-gem 'config'
-gem 'http'
-gem 'mechanize'
-gem 'nokogiri', ">= 1.10.4"
-gem 'slack-ruby-client'
-gem 'sidekiq'
-gem 'sinatra'
+gem "config"
+gem "http"
+gem "mechanize"
+gem "nokogiri", ">= 1.10.4"
+gem "sidekiq"
+gem "sinatra"
+gem "slack-ruby-client"
 
 group :development do
   gem "guard"
