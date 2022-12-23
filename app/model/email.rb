@@ -14,7 +14,7 @@ class Email
   end
 
   def recept_date
-    @params.match(/\d{4}\/\d{2}\/\d{2}.+\d{2}:\d{2}/)[0]
+    @params.match(%r{\d{4}/\d{2}/\d{2}.+\d{2}:\d{2}})[0]
   end
 
   def recept_id
