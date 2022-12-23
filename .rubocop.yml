@@ -7,6 +7,8 @@ AllCops:
     - spec/spec_helper.rb
     - vendor/**/*
 
+Metrics/AbcSize:
+  Enabled: false
 Metrics/BlockLength:
   Enabled: false
 Style/Documentation:
