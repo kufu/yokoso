@@ -76,8 +76,6 @@ module SlackNotification
       ],
       thread_ts: res.ts
     )
-
-    return
   end
 
   module_function :run

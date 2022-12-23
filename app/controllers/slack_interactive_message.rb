@@ -11,8 +11,6 @@ module SlackInteractiveMessage
 
     # Slack のレスポンス3秒以内ルールのため非同期処理
     ReceptionWorker.perform_async slack_dialog
-
-    return
   end
 
   module_function :run

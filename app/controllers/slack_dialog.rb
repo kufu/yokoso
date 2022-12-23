@@ -77,9 +77,7 @@ module SlackDialog
     req["Authorization"] = "Bearer #{ENV.fetch('SLACK_TOKEN')}"
     req.body = dialog.to_json
 
-    res = https.request(req)
-
-    return
+    https.request(req)
   end
 
   module_function :run
