@@ -1,5 +1,7 @@
 # Yokoso
 
+![Tests](https://github.com/kufu/yokoso/actions/workflows/build.yml/badge.svg)
+
 - Slack とビル来客システム https://srd-gate.com/03/login.cgi を連携させるツール
 - 概要は [SmartHR Tech Blog](https://tech.smarthr.jp/entry/2019/06/28/134701)
 
