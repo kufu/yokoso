@@ -15,15 +15,18 @@ class SlackDialog
   # Factory Method
   # @param trigger_id [String]
   def self.open(trigger_id)
-    post_body = new.post_body(trigger_id)
+    post_body = new.send(:post_body, trigger_id)
 
     # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
     client.dialog_open(post_body)
   end
 
+  private
+
   # @param trigger_id [String]
   # @return [Hash]
+  # @private
   def post_body(trigger_id)
     { trigger_id: trigger_id,
       dialog: {
@@ -54,8 +57,6 @@ class SlackDialog
         ]
       } }
   end
-
-  private
 
   # @param label        [String]
   # @param name         [String]
