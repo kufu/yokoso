@@ -5,7 +5,7 @@ require "json"
 require_relative "../../../app/model/slack_dialog_submission"
 
 describe SlackDialogSubmission do
-  let(:instance) { described_class.new(post_body.to_json) }
+  let(:instance) { described_class.new(post_body) }
 
   describe "#slack_user_id" do
     context "ok" do

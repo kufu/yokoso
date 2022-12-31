@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require "active_support"
+
 # @see https://api.slack.com/dialogs
 class SlackDialogSubmission
-  # @param post_body [String] json
+  # @param post_body [Hash]
   def initialize(post_body)
-    @post_body = JSON.parse(post_body, { symbolize_names: true })
+    @post_body = post_body.with_indifferent_access
   end
 
   # @return [String]
