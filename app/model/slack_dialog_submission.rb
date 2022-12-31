@@ -20,4 +20,19 @@ class SlackDialogSubmittion
   def recept_date
     @post_body.dig(:submission, :date)
   end
+
+  # @return [String]
+  def recept_time
+    @post_body.dig(:submission, :time)
+  end
+
+  # @return [String]
+  def company_name
+    @post_body.dig(:submission, :company_name)
+  end
+
+  # @return [String]
+  def visitor_name
+    @post_body.dig(:submission, :name)
+  end
 end

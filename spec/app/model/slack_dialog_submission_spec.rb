@@ -33,13 +33,13 @@ describe SlackDialogSubmittion do
   describe "#company_name" do
     context "ok" do
       let(:post_body) { { submission: { company_name: "SmartHR" } } }
-      it { expect(instance.recept_time).to eq "SmartHR" }
+      it { expect(instance.company_name).to eq "SmartHR" }
     end
   end
   describe "#visitor_name" do
     context "ok" do
       let(:post_body) { { submission: { name: "須磨 太郎" } } }
-      it { expect(instance.recept_time).to eq "須磨 太郎" }
+      it { expect(instance.visitor_name).to eq "須磨 太郎" }
     end
   end
 end
