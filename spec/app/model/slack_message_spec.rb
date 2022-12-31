@@ -25,6 +25,7 @@ describe SlackMessage do
           text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray:",
           user: "UCKTXCBRB",
           attachments: [{
+            color: "good",
             fields: [
               { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },
               { short: true, title: "訪問日時", value: "2023/01/01 08:00" }
