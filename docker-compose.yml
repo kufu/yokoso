@@ -1,0 +1,11 @@
+
+version: '3.8'
+services:
+  redis:
+    image: redis:6.2
+    ports:
+      - "46379:6379"
+  redis_test:
+    image: redis:6.2
+    ports:
+      - "46380:6379"
