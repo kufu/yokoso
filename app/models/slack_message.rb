@@ -34,6 +34,7 @@ class SlackMessage
   private
 
   # @return [Hash]
+  # @private
   def received_message_post_body
     { icon_emoji: MESSAGES["intarctive"]["icon"],
       channel: @dialog_submission.slack_channel_id,
@@ -43,6 +44,7 @@ class SlackMessage
   end
 
   # @return [Hash]
+  # @private
   def notification_message_post_body
     { icon_emoji: MESSAGES["notification"]["icon"],
       channel: ENV.fetch("SLACK_CHANNEL"),
