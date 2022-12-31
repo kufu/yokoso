@@ -2,8 +2,9 @@
 
 # @see https://api.slack.com/dialogs
 class SlackDialogSubmission
+  # @param post_body [String] json
   def initialize(post_body)
-    @post_body = post_body
+    @post_body = JSON.parse(post_body, { symbolize_names: true })
   end
 
   # @return [String]

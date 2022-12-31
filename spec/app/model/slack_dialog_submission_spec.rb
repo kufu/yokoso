@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "json"
 require_relative "../../../app/model/slack_dialog_submission"
 
 describe SlackDialogSubmission do
-  let(:instance) { described_class.new(post_body) }
+  let(:instance) { described_class.new(post_body.to_json) }
 
   describe "#slack_user_id" do
     context "ok" do
