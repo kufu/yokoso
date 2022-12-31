@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "net/http"
+require_relative "../model/slack_dialog"
 
 module SlackDialog
   def run(request)
@@ -8,8 +9,7 @@ module SlackDialog
     req = URI.decode_www_form(request.body.read)
     trigger_id = req.assoc("trigger_id").last
 
-    # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
+    messages = open("./config/MESSAGES.yml", "r") { |f| YAML.load(f) }
 
     # dialog form
     slack_dialog = SlackDialog.new
