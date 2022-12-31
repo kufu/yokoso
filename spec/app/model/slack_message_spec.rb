@@ -9,9 +9,11 @@ describe SlackMessage do
     context "ok" do
       it do
         expected = { title: "title",
-                     value: "タイトル",
+                     value: "value",
                      short: true }
-        expect(instance.send(:attachment_field)).to eq expected
+        args = { title: "title",
+                 value: "value" }
+        expect(instance.send(:attachment_field, args)).to eq expected
       end
     end
   end
