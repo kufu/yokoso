@@ -18,6 +18,11 @@ class SlackDialog
     times
   end
 
+  # @param label        [String]
+  # @param name         [String]
+  # @param placeholder  [String]
+  # @return [Hash]
+  # @see https://api.slack.com/dialogs#dialogs__dialog-form-elements__textarea-elements
   def textarea_element(label:, name:, placeholder:)
     { label: label,
       type: "text",
