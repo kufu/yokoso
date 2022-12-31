@@ -5,6 +5,7 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
+  # @param dialog_submission [SlackDialogSubmission]
   def initialize(dialog_submission: nil)
     @dialog_submission = dialog_submission
   end
@@ -18,7 +19,6 @@ class SlackMessage
     client.chat_postEphemeral(post_body)
   end
 
-  # @param dialog_submission [SlackDialogSubmission]
   # @return [Hash]
   def received_message_post_body
     { icon_emoji: MESSAGES["intarctive"]["icon"],
@@ -32,7 +32,6 @@ class SlackMessage
 
   private
 
-  # @param dialog_submission [SlackDialogSubmission]
   # @return [Array] attachment_field array
   # @private
   def received_message_attachment_fields
