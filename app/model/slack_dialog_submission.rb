@@ -6,7 +6,7 @@ require "active_support"
 class SlackDialogSubmission
   # @param post_body [Hash]
   def initialize(post_body)
-    @post_body = post_body.with_indifferent_access
+    @post_body = post_body.deep_symbolize_keys
   end
 
   # @return [String]

@@ -5,8 +5,9 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
-  def self.post_received_message(submit_payload)
-    post_body = new.received_message_post_body(submit_payload)
+  # @param dialog_submission [SlackDialogSubmission]
+  def self.post_received_message(dialog_submission)
+    post_body = new.received_message_post_body(dialog_submission)
 
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
     client.chat_postEphemeral(post_body)

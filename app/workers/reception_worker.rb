@@ -11,7 +11,7 @@ class ReceptionWorker
   sidekiq_options queue: :default, retry: false
 
   def perform(slack_dialog)
-    dialog_result = SlackDialogSubmission.new(slack_dialog)
+    dialog_submission = SlackDialogSubmission.new(slack_dialog)
     # slack dialog input
     recept_date = slack_dialog["submission"]["date"]
     recept_time = slack_dialog["submission"]["time"]
@@ -47,6 +47,6 @@ class ReceptionWorker
     # # regist
     # agent.page.form.submit
 
-    SlackMessage.post_received_message(dialog_result)
+    SlackMessage.post_received_message(dialog_submission)
   end
 end
