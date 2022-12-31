@@ -8,28 +8,6 @@ module SlackDialog
     req = URI.decode_www_form(request.body.read)
     trigger_id = req.assoc("trigger_id").last
 
-    # Array: yyyy/mm/dd
-    # today, today + 1, today + 90
-    today = Date.today
-    dates = []
-    90.times do |i|
-      formatted_date = (today + i).strftime("%Y/%m/%d")
-      wday = %w[日 月 火 水 木 金 土][(today + i).wday]
-      date = { label: "#{formatted_date} #{wday}", value: formatted_date }
-      dates.push(date)
-    end
-
-    # Array: hh:mm
-    # 08:00, 08:30, ... , 21:00, 21:30
-    times = []
-    (8..21).each do |i|
-      hour = format("%.2d", i)
-      time_on = { label: "#{hour}:00", value: "#{hour}:00" }
-      time_half = { label: "#{hour}:30", value: "#{hour}:30" }
-      times.push(time_on)
-      times.push(time_half)
-    end
-
     # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
@@ -45,12 +23,12 @@ module SlackDialog
           slack_dialog.select_element(
             label: messages["dialog"]["recept_date"],
             name: "date",
-            options: dates
+            options: slack_dialog.date_select_options
           ),
           slack_dialog.select_element(
             label: messages["dialog"]["recept_time"],
             name: "time",
-            options: times
+            options: slack_dialog.time_select_options
           ),
           slack_dialog.textarea_element(
             label: messages["dialog"]["recept_company"],
