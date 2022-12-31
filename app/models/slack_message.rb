@@ -33,8 +33,8 @@ class SlackMessage
 
   private
 
-  # @return [Hash] postMessage API post body
-  # @see https://api.slack.com/methods/chat.postMessage
+  # @return [Hash] postEphemeral API post body
+  # @see https://api.slack.com/methods/chat.postEphemeral
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def received_message_post_body
@@ -45,7 +45,9 @@ class SlackMessage
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
 
-  # @return [Hash]
+  # @return [Hash] postMessage API post body
+  # @see https://api.slack.com/methods/chat.postMessage
+  # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def notification_message_post_body
     { icon_emoji: MESSAGES["notification"]["icon"],
