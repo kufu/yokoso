@@ -9,6 +9,7 @@ module SlackInteractiveMessage
     payload = req.assoc("payload").last
 
     # Slack のレスポンス3秒以内ルールのため非同期処理
+    # https://api.slack.com/dialogs#submit
     ReceptionWorker.perform_async JSON.parse(payload)
   end
 

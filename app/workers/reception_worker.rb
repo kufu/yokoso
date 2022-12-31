@@ -20,6 +20,7 @@ class ReceptionWorker
     slack_id = slack_dialog["user"]["id"]
     slack_channel = slack_dialog["channel"]["id"]
 
+    # FIXME: rollback
     # # srd-gate login
     # agent = Mechanize.new
     # agent.get("https://srd-gate.com/03/ login.cgi")
