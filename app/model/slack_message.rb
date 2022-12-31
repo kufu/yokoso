@@ -15,11 +15,13 @@ class SlackMessage
   # Factory Method
   # @param dialog_submission [SlackDialogSubmission]
   def self.post_received_message(dialog_submission)
-    post_body = new(dialog_submission: dialog_submission).received_message_post_body
+    post_body = new(dialog_submission: dialog_submission).send(:received_message_post_body)
 
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
     client.chat_postEphemeral(post_body)
   end
+
+  private
 
   # @return [Hash]
   def received_message_post_body
@@ -29,8 +31,6 @@ class SlackMessage
       text: MESSAGES["intarctive"]["text_notification"],
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
-
-  private
 
   # @return [Array] attachment_field array
   # @private
