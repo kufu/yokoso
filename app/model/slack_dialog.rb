@@ -12,32 +12,35 @@ class SlackDialog
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
   MESSAGES = open("./config/MESSAGES.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
-  def post_body
-    { title: MESSAGES["dialog"]["tilte"],
-      callback_id: "callback_id",
-      submit_label: MESSAGES["dialog"]["submit"],
-      elements: [
-        select_element(
-          label: MESSAGES["dialog"]["recept_date"],
-          name: "date",
-          options: date_select_options
-        ),
-        select_element(
-          label: MESSAGES["dialog"]["recept_time"],
-          name: "time",
-          options: time_select_options
-        ),
-        textarea_element(
-          label: MESSAGES["dialog"]["recept_company"],
-          name: "company_name",
-          placeholder: MESSAGES["dialog"]["recept_company_placeholder"]
-        ),
-        textarea_element(
-          label: MESSAGES["dialog"]["recept_name"],
-          name: "name",
-          placeholder: MESSAGES["dialog"]["recept_name_placeholder"]
-        )
-      ] }
+  def post_body(trigger_id)
+    { trigger_id: trigger_id,
+      dialog: {
+        title: MESSAGES["dialog"]["tilte"],
+        callback_id: "callback_id",
+        submit_label: MESSAGES["dialog"]["submit"],
+        elements: [
+          select_element(
+            label: MESSAGES["dialog"]["recept_date"],
+            name: "date",
+            options: date_select_options
+          ),
+          select_element(
+            label: MESSAGES["dialog"]["recept_time"],
+            name: "time",
+            options: time_select_options
+          ),
+          textarea_element(
+            label: MESSAGES["dialog"]["recept_company"],
+            name: "company_name",
+            placeholder: MESSAGES["dialog"]["recept_company_placeholder"]
+          ),
+          textarea_element(
+            label: MESSAGES["dialog"]["recept_name"],
+            name: "name",
+            placeholder: MESSAGES["dialog"]["recept_name_placeholder"]
+          )
+        ]
+      } }
   end
 
   # @param label        [String]
