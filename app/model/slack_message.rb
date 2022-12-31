@@ -21,6 +21,15 @@ class SlackMessage
     client.chat_postEphemeral(post_body)
   end
 
+  # Factory Method
+  # @param dialog_submission [Email]
+  def self.post_notification_message(email)
+    post_body = new(email: email).send(:notification_message_post_body)
+
+    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
+    client.chat_postMessage(post_body)
+  end
+
   private
 
   # @return [Hash]
