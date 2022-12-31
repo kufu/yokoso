@@ -87,7 +87,7 @@ describe SlackMessage do
 
         expected = [
           { title: "来訪者名",
-            value: " 様",
+            value: "株式会社smarthr hoge piyo 様",
             short: true },
           { title: "訪問日時",
             value: "2022/03/31(Thu) 18:00",

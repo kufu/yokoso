@@ -6,8 +6,9 @@ class SlackMessage
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
   # @param dialog_submission [SlackDialogSubmission]
-  def initialize(dialog_submission: nil)
+  def initialize(dialog_submission: nil, email: nil)
     @dialog_submission = dialog_submission
+    @email = email
   end
 
   # Factory Method
@@ -42,6 +43,28 @@ class SlackMessage
         title: MESSAGES["intarctive"]["recept_datetime"],
         value: "#{@dialog_submission.recept_date} #{@dialog_submission.recept_time}"
       )
+    ]
+  end
+
+  # @return [Array] attachment_field array
+  # @private
+  def notification_message_attachment_fields
+    [
+      {
+        title: MESSAGES["notification"]["recept_name"],
+        value: "#{@email.recept_name} 様",
+        short: true
+      },
+      {
+        title: MESSAGES["notification"]["recept_datetime"],
+        value: @email.recept_date,
+        short: true
+      },
+      {
+        title: MESSAGES["notification"]["recept_id"],
+        value: @email.recept_id,
+        short: true
+      }
     ]
   end
 
