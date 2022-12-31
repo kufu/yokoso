@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# @see https://api.slack.com/dialogs
 class SlackDialog
   private
 
@@ -15,5 +16,12 @@ class SlackDialog
       times.push(time_half)
     end
     times
+  end
+
+  def textarea_element(label:, name:, placeholder:)
+    { label: label,
+      type: "text",
+      name: name,
+      placeholder: placeholder }
   end
 end
