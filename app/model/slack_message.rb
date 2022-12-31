@@ -24,16 +24,14 @@ class SlackMessage
       attachments: [
         {
           fields: [
-            {
+            attachment_field(
               title: MESSAGES["intarctive"]["recept_name"],
-              value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様",
-              short: true
-            },
-            {
+              value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様"
+            ),
+            attachment_field(
               title: MESSAGES["intarctive"]["recept_datetime"],
-              value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}",
-              short: true
-            }
+              value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}"
+            )
           ]
         }
       ] }
