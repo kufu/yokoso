@@ -5,10 +5,14 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
+  def initialize(dialog_submission: nil)
+    @dialog_submission = dialog_submission
+  end
+
   # Factory Method
   # @param dialog_submission [SlackDialogSubmission]
   def self.post_received_message(dialog_submission)
-    post_body = new.received_message_post_body(dialog_submission)
+    post_body = new(dialog_submission: dialog_submission).received_message_post_body
 
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
     client.chat_postEphemeral(post_body)
@@ -16,13 +20,13 @@ class SlackMessage
 
   # @param dialog_submission [SlackDialogSubmission]
   # @return [Hash]
-  def received_message_post_body(dialog_submission)
+  def received_message_post_body
     { icon_emoji: MESSAGES["intarctive"]["icon"],
-      channel: dialog_submission.slack_channel_id,
-      user: dialog_submission.slack_user_id,
+      channel: @dialog_submission.slack_channel_id,
+      user: @dialog_submission.slack_user_id,
       text: MESSAGES["intarctive"]["text_notification"],
       attachments: [
-        attachments(fields: received_message_attachment_fields(dialog_submission))
+        attachments(fields: received_message_attachment_fields)
       ] }
   end
 
@@ -31,15 +35,15 @@ class SlackMessage
   # @param dialog_submission [SlackDialogSubmission]
   # @return [Array] attachment_field array
   # @private
-  def received_message_attachment_fields(dialog_submission)
+  def received_message_attachment_fields
     [
       attachment_field(
         title: MESSAGES["intarctive"]["recept_name"],
-        value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様"
+        value: "#{@dialog_submission.company_name} #{@dialog_submission.visitor_name} 様"
       ),
       attachment_field(
         title: MESSAGES["intarctive"]["recept_datetime"],
-        value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}"
+        value: "#{@dialog_submission.recept_date} #{@dialog_submission.recept_time}"
       )
     ]
   end

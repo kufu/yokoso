@@ -18,6 +18,7 @@ describe SlackMessage do
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
         dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
+        instance = described_class.new(dialog_submission: dialog_submission)
 
         expected = {
           channel: "CH15TJXEX",
@@ -31,10 +32,8 @@ describe SlackMessage do
               { short: true, title: "訪問日時", value: "2023/01/01 08:00" }
             ]
           }]
-
         }
-        expect(instance.send(:received_message_post_body,
-                             dialog_submission)).to eq expected
+        expect(instance.send(:received_message_post_body)).to eq expected
       end
     end
   end
@@ -49,12 +48,13 @@ describe SlackMessage do
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
         dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
+        instance = described_class.new(dialog_submission: dialog_submission)
+
         expected = [
           { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },
           { short: true, title: "訪問日時", value: "2023/01/01 08:00" }
         ]
-        expect(instance.send(:received_message_attachment_fields,
-                             dialog_submission)).to eq expected
+        expect(instance.send(:received_message_attachment_fields)).to eq expected
       end
     end
   end
