@@ -2,8 +2,6 @@
 
 # @see https://api.slack.com/dialogs
 class SlackDialog
-  private
-
   def time_texts
     # Array: hh:mm
     # 08:00, 08:30, ... , 21:00, 21:30

@@ -34,6 +34,7 @@ module SlackDialog
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
     # dialog form
+    slack_dialog = SlackDialog.new
     dialog = {
       trigger_id: trigger_id,
       dialog: {
@@ -41,30 +42,26 @@ module SlackDialog
         callback_id: "callback_id",
         submit_label: messages["dialog"]["submit"],
         elements: [
-          {
+          slack_dialog.select_element(
             label: messages["dialog"]["recept_date"],
-            type: "select",
             name: "date",
             options: dates
-          },
-          {
+          ),
+          slack_dialog.select_element(
             label: messages["dialog"]["recept_time"],
-            type: "select",
             name: "time",
             options: times
-          },
-          {
+          ),
+          slack_dialog.textarea_element(
             label: messages["dialog"]["recept_company"],
-            type: "text",
             name: "company_name",
             placeholder: messages["dialog"]["recept_company_placeholder"]
-          },
-          {
+          ),
+          slack_dialog.textarea_element(
             label: messages["dialog"]["recept_name"],
-            type: "text",
             name: "name",
             placeholder: messages["dialog"]["recept_name_placeholder"]
-          }
+          )
         ]
       }
     }
