@@ -50,21 +50,12 @@ class SlackMessage
   # @private
   def notification_message_attachment_fields
     [
-      {
-        title: MESSAGES["notification"]["recept_name"],
-        value: "#{@email.recept_name} 様",
-        short: true
-      },
-      {
-        title: MESSAGES["notification"]["recept_datetime"],
-        value: @email.recept_date,
-        short: true
-      },
-      {
-        title: MESSAGES["notification"]["recept_id"],
-        value: @email.recept_id,
-        short: true
-      }
+      attachment_field(title: MESSAGES["notification"]["recept_name"],
+                       value: "#{@email.recept_name} 様"),
+      attachment_field(title: MESSAGES["notification"]["recept_datetime"],
+                       value: @email.recept_date),
+      attachment_field(title: MESSAGES["notification"]["recept_id"],
+                       value: @email.recept_id)
     ]
   end
 
