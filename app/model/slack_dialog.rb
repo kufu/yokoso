@@ -13,8 +13,12 @@ class SlackDialog
   MESSAGES = open("./config/MESSAGES.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
   # Factory Method
-  def self.post_body(trigger_id)
-    new.post_body(trigger_id)
+  def self.open(trigger_id)
+    post_body = new.post_body(trigger_id)
+
+    # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
+    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
+    client.dialog_open(post_body)
   end
 
   # @param trigger_id [String]
