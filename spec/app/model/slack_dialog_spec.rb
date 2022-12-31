@@ -4,7 +4,9 @@ require "spec_helper"
 require_relative "../../../app/model/slack_dialog"
 
 describe SlackDialog do
-  describe "time_texts" do
+  let(:instance) { described_class.new }
+
+  describe "#time_texts" do
     context "正常系" do
       it do
         expected = [{ label: "08:00", value: "08:00" },
@@ -36,6 +38,20 @@ describe SlackDialog do
                     { label: "21:00", value: "21:00" },
                     { label: "21:30", value: "21:30" }]
         expect(described_class.new.send(:time_texts)).to eq expected
+      end
+    end
+  end
+
+  describe "#textarea_element" do
+    context "ok" do
+      it do
+        expected = { label: "label",
+                     type: "text",
+                     name: "elements name",
+                     placeholder: "placeholder" }
+        expect(instance.send(label: "label",
+                             name: "elements name",
+                             placeholder: "placeholder")).to eq expected
       end
     end
   end
