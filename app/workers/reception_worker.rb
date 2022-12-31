@@ -4,6 +4,7 @@ require "mechanize"
 require "sidekiq"
 require "slack-ruby-client"
 require_relative "../model/slack_dialog_submission"
+require_relative "../model/slack_message"
 
 class ReceptionWorker
   include Sidekiq::Worker
@@ -46,35 +47,6 @@ class ReceptionWorker
     # # regist
     # agent.page.form.submit
 
-    client = Slack::Web::Client.new(
-      token: ENV.fetch("SLACK_TOKEN")
-    )
-
-    # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
-
-    client.chat_postEphemeral(
-      icon_emoji: messages["intarctive"]["icon"],
-      channel: slack_channel,
-      user: slack_id,
-      text: messages["intarctive"]["text_notification"],
-      attachments: [
-        {
-          color: "#439FE0",
-          fields: [
-            {
-              title: messages["intarctive"]["recept_name"],
-              value: "#{dialog_result.company_name} #{dialog_result.visitor_name} 様",
-              short: true
-            },
-            {
-              title: messages["intarctive"]["recept_datetime"],
-              value: "#{dialog_result.recept_date} #{dialog_result.recept_time}",
-              short: true
-            }
-          ]
-        }
-      ]
-    )
+    SlackMessage.post_received_message(dialog_result)
   end
 end
