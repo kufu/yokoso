@@ -4,6 +4,9 @@ require "date"
 
 # @see https://api.slack.com/dialogs
 class SlackDialog
+  SELECT_TIME_HOUR_START = 8
+  SELECT_TIME_HOUR_END = 21
+
   # @param label        [String]
   # @param name         [String]
   # @param placeholder  [String]
@@ -42,10 +45,11 @@ class SlackDialog
 
   # @return [Array]
   def time_select_options
-    zero_padded_hours = (8..21).to_a.map { |n| format("%.2d", n) }
-    zero_padded_hours.map do |hour|
-      [{ label: "#{hour}:00", value: "#{hour}:00" },
-       { label: "#{hour}:30", value: "#{hour}:30" }]
+    hours = (SELECT_TIME_HOUR_START..SELECT_TIME_HOUR_END).to_a
+    hours.map do |hour|
+      padded_hours = format("%.2d", hour)
+      [{ label: "#{padded_hours}:00", value: "#{padded_hours}:00" },
+       { label: "#{padded_hours}:30", value: "#{padded_hours}:30" }]
     end.flatten
   end
 end
