@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SlackModal
+class SlackDialog
   private
 
   def time_texts

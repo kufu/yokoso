@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require_relative "../../../app/model/slack_modal"
+require_relative "../../../app/model/slack_dialog"
 
-describe SlackModal do
+describe SlackDialog do
   describe "time_texts" do
     context "正常系" do
       it do
