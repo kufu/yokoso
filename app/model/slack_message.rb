@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
-# @see 
+# @see
 class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
-  def initialize
-    @client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-  end
-
   def self.post_received_message(submit_payload)
-    new.post_received_message(submit_payload)
+    post_body = new.received_message_post_body(submit_payload)
+
+    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
+    client.chat_postEphemeral(post_body)
   end
 
-  def post_received_message(dialog_result)
-    @client.chat_postEphemeral(
-      icon_emoji: MESSAGES["intarctive"]["icon"],
+  def received_message_post_body(dialog_result)
+    { icon_emoji: MESSAGES["intarctive"]["icon"],
       channel: dialog_result.slack_channel_id,
       user: dialog_result.slack_user_id,
       text: MESSAGES["intarctive"]["text_notification"],
@@ -35,8 +33,7 @@ class SlackMessage
             }
           ]
         }
-      ]
-    )
+      ] }
   end
 
   # @param fields [Array]  attachment_field
