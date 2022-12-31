@@ -37,10 +37,13 @@ class SlackMessage
       ] }
   end
 
+  private
+
   # @param fields [Array]  attachment_field
   # @param color  [String] hex color code (eg. #439FE0)
   # @return [Hash]
   # @see https://api.slack.com/reference/messaging/attachments
+  # @private
   def attachments(fields:, color: "good")
     { color: color,
       fields: fields }
@@ -51,6 +54,7 @@ class SlackMessage
   # @param short [Boolean]
   # @return [Hash]
   # @see https://api.slack.com/reference/messaging/attachments
+  # @private
   def attachment_field(title:, value:, short: true)
     { title: title,
       value: value,
