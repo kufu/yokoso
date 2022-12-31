@@ -17,6 +17,7 @@ gem "sinatra-contrib"
 gem "slack-ruby-client"
 
 group :development do
+  gem "byebug"
   gem "guard"
   gem "guard-rspec", require: false
 end
