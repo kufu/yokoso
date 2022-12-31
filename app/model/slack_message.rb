@@ -41,6 +41,14 @@ class SlackMessage
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
 
+  # @return [Hash]
+  def notification_message_post_body
+    { icon_emoji: MESSAGES["notification"]["icon"],
+      channel: ENV.fetch("SLACK_CHANNEL"),
+      text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
+      attachments: [attachment(fields: notification_message_attachment_fields)] }
+  end
+
   # @return [Array] attachment_field array
   # @private
   def received_message_attachment_fields
