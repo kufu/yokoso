@@ -6,6 +6,18 @@ require_relative "../../../app/model/slack_dialog_submission"
 describe SlackDialogSubmittion do
   let(:instance) { described_class.new(post_body) }
 
+  describe "#slack_user_id" do
+    context "ok" do
+      let(:post_body) { { user: { id: "UCKTXCBRB" } } }
+      it { expect(instance.slack_user_id).to eq "UCKTXCBRB" }
+    end
+  end
+  describe "#slack_channel_id" do
+    context "ok" do
+      let(:post_body) { { channel: { id: "CH15TJXEX" } } }
+      it { expect(instance.slack_channel_id).to eq "CH15TJXEX" }
+    end
+  end
   describe "#recept_date" do
     context "ok" do
       let(:post_body) { { submission: { date: "2023/01/01" } } }
