@@ -62,10 +62,10 @@ describe SlackDialog do
         expected = { label: "label",
                      type: "select",
                      name: "element name",
-                     options: { test: test } }
+                     options: [] }
         args = { label: "label",
                  name: "element name",
-                 options: { test: test } }
+                 options: [] }
         expect(instance.send(:select_element, args)).to eq expected
       end
     end

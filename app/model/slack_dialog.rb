@@ -29,4 +29,16 @@ class SlackDialog
       name: name,
       placeholder: placeholder }
   end
+
+  # @param label    [String]
+  # @param name     [String]
+  # @param options  [Array]
+  # @return [Hash]
+  # @see https://api.slack.com/dialogs#select_elements
+  def select_element(label:, name:, options:)
+    { label: label,
+      type: "select",
+      name: name,
+      options: options }
+  end
 end
