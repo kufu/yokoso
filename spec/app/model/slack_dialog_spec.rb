@@ -6,6 +6,37 @@ require_relative "../../../app/model/slack_dialog"
 describe SlackDialog do
   let(:instance) { described_class.new }
 
+  describe "#post_body" do
+    context "ok" do
+      it do
+        expected = {
+          trigger_id: "trigger_id",
+          dialog: {
+            title: "入館受付申請",
+            callback_id: "callback_id",
+            submit_label: "送信",
+            elements: [{ label: "来訪日",
+                         type: "select",
+                         name: "date",
+                         options: instance.send(:date_select_options) },
+                       { label: "訪問時間",
+                         type: "select",
+                         name: "time",
+                         options: instance.send(:time_select_options) },
+                       { label: "来訪者会社名",
+                         type: "text",
+                         name: "company_name",
+                         placeholder: "会社名がない場合は「面接」「なし」等" },
+                       { label: "来訪者名",
+                         type: "text",
+                         name: "name",
+                         placeholder: "「様」をつけると入館証が「様様」になるよ！" }]
+          }
+        }
+        expect(instance.post_body("trigger_id")).to eq expected
+      end
+    end
+  end
   describe "#textarea_element" do
     context "ok" do
       it do
