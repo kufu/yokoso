@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require_relative "../../../app/model/slack_dialog"
+require_relative "../../../app/models/slack_dialog"
 
 describe SlackDialog do
   let(:instance) { described_class.new }

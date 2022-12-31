@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require_relative "../../../app/model/email"
-require_relative "../../../app/model/slack_dialog_submission"
-require_relative "../../../app/model/slack_message"
+require_relative "../../../app/models/email"
+require_relative "../../../app/models/slack_dialog_submission"
+require_relative "../../../app/models/slack_message"
 
 describe SlackMessage do
   let(:instance) { described_class.new }
