@@ -3,7 +3,7 @@
 require "net/http"
 require_relative "../model/slack_dialog"
 
-module SlackDialog
+module SlackSlashCommand
   def run(request)
     # get slack trigger id from request
     req = URI.decode_www_form(request.body.read)
