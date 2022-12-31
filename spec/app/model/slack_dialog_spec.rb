@@ -47,11 +47,12 @@ describe SlackDialog do
       it do
         expected = { label: "label",
                      type: "text",
-                     name: "elements name",
+                     name: "element name",
                      placeholder: "placeholder" }
-        expect(instance.send(label: "label",
-                             name: "elements name",
-                             placeholder: "placeholder")).to eq expected
+        args = { label: "label",
+                 name: "element name",
+                 placeholder: "placeholder" }
+        expect(instance.send(:textarea_element, args)).to eq expected
       end
     end
   end
