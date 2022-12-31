@@ -48,7 +48,8 @@ class ReceptionWorker
       token: ENV.fetch("SLACK_TOKEN")
     )
 
-    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
+    # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
+    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
     client.chat_postEphemeral(
       icon_emoji: messages["intarctive"]["icon"],

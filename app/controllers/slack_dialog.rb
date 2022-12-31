@@ -30,7 +30,8 @@ module SlackDialog
       times.push(time_half)
     end
 
-    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
+    # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
+    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
     # dialog form
     dialog = {
