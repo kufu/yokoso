@@ -14,46 +14,37 @@ module SlackDialog
     # dialog form
     slack_dialog = SlackDialog.new
     dialog = {
-      trigger_id: trigger_id,
-      dialog: {
-        title: messages["dialog"]["tilte"],
-        callback_id: "callback_id",
-        submit_label: messages["dialog"]["submit"],
-        elements: [
-          slack_dialog.select_element(
-            label: messages["dialog"]["recept_date"],
-            name: "date",
-            options: slack_dialog.date_select_options
-          ),
-          slack_dialog.select_element(
-            label: messages["dialog"]["recept_time"],
-            name: "time",
-            options: slack_dialog.time_select_options
-          ),
-          slack_dialog.textarea_element(
-            label: messages["dialog"]["recept_company"],
-            name: "company_name",
-            placeholder: messages["dialog"]["recept_company_placeholder"]
-          ),
-          slack_dialog.textarea_element(
-            label: messages["dialog"]["recept_name"],
-            name: "name",
-            placeholder: messages["dialog"]["recept_name_placeholder"]
-          )
-        ]
-      }
+      title: messages["dialog"]["tilte"],
+      callback_id: "callback_id",
+      submit_label: messages["dialog"]["submit"],
+      elements: [
+        slack_dialog.select_element(
+          label: messages["dialog"]["recept_date"],
+          name: "date",
+          options: slack_dialog.date_select_options
+        ),
+        slack_dialog.select_element(
+          label: messages["dialog"]["recept_time"],
+          name: "time",
+          options: slack_dialog.time_select_options
+        ),
+        slack_dialog.textarea_element(
+          label: messages["dialog"]["recept_company"],
+          name: "company_name",
+          placeholder: messages["dialog"]["recept_company_placeholder"]
+        ),
+        slack_dialog.textarea_element(
+          label: messages["dialog"]["recept_name"],
+          name: "name",
+          placeholder: messages["dialog"]["recept_name_placeholder"]
+        )
+      ]
     }
 
-    uri = URI.parse("https://slack.com/api/dialog.open")
-    https = Net::HTTP.new(uri.host, uri.port)
-    https.use_ssl = true
-
-    req = Net::HTTP::Post.new(uri.request_uri)
-    req["Content-Type"] = "application/json"
-    req["Authorization"] = "Bearer #{ENV.fetch('SLACK_TOKEN')}"
-    req.body = dialog.to_json
-
-    https.request(req)
+    # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
+    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
+    client.dialog_open(trigger_id: trigger_id,
+                       dialog: dialog)
   end
 
   module_function :run
