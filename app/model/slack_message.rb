@@ -6,6 +6,7 @@ class SlackMessage
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
   # @param dialog_submission [SlackDialogSubmission]
+  # @param dialog_submission [Email]
   def initialize(dialog_submission: nil, email: nil)
     @dialog_submission = dialog_submission
     @email = email
