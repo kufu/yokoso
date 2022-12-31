@@ -4,8 +4,9 @@ require "date"
 
 # @see https://api.slack.com/dialogs
 class SlackDialog
-  SELECT_TIME_HOUR_START = 8
-  SELECT_TIME_HOUR_END = 21
+  SELECT_DATE_RANGE_NUM   = 90
+  SELECT_TIME_HOUR_START  = 8
+  SELECT_TIME_HOUR_END    = 21
 
   # @param label        [String]
   # @param name         [String]
@@ -33,7 +34,7 @@ class SlackDialog
 
   # @return [Array]
   def date_select_options
-    dates = (Date.today...(Date.today + 90)).to_a
+    dates = (Date.today...(Date.today + SELECT_DATE_RANGE_NUM)).to_a
     dates.map do |date|
       date_text = date.strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][date.wday]
