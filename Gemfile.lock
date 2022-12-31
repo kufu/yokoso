@@ -109,6 +109,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_portile2 (2.8.0)
     minitest (5.16.3)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
@@ -180,6 +181,12 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.2.3)
       tilt (~> 2.0)
+    sinatra-contrib (2.2.3)
+      multi_json
+      mustermann (~> 2.0)
+      rack-protection (= 2.2.3)
+      sinatra (= 2.2.3)
+      tilt (~> 2.0)
     slack-ruby-client (0.14.2)
       activesupport
       faraday (>= 0.9)
@@ -215,6 +222,7 @@ DEPENDENCIES
   rubocop
   sidekiq
   sinatra
+  sinatra-contrib
   slack-ruby-client
 
 RUBY VERSION

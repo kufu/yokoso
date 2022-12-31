@@ -12,6 +12,7 @@ gem "mechanize"
 gem "nokogiri", ">= 1.10.4"
 gem "sidekiq"
 gem "sinatra"
+gem "sinatra-contrib"
 gem "slack-ruby-client"
 
 group :development do
