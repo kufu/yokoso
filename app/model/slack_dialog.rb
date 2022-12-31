@@ -43,11 +43,14 @@ class SlackDialog
       } }
   end
 
+  private
+
   # @param label        [String]
   # @param name         [String]
   # @param placeholder  [String]
   # @return [Hash]
   # @see https://api.slack.com/dialogs#dialogs__dialog-form-elements__textarea-elements
+  # @pprivate
   def textarea_element(label:, name:, placeholder:)
     { label: label,
       type: "text",
@@ -60,6 +63,7 @@ class SlackDialog
   # @param options  [Array]
   # @return [Hash]
   # @see https://api.slack.com/dialogs#select_elements
+  # @pprivate
   def select_element(label:, name:, options:)
     { label: label,
       type: "select",
@@ -68,6 +72,7 @@ class SlackDialog
   end
 
   # @return [Array]
+  # @pprivate
   def date_select_options
     dates = (Date.today...(Date.today + SELECT_DATE_RANGE_NUM)).to_a
     dates.map do |date|
@@ -80,6 +85,7 @@ class SlackDialog
   end
 
   # @return [Array]
+  # @pprivate
   def time_select_options
     hours = (SELECT_TIME_HOUR_START..SELECT_TIME_HOUR_END).to_a
     hours.map do |hour|
