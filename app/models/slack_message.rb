@@ -33,7 +33,9 @@ class SlackMessage
 
   private
 
-  # @return [Hash]
+  # @return [Hash] postMessage API post body
+  # @see https://api.slack.com/methods/chat.postMessage
+  # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def received_message_post_body
     { icon_emoji: MESSAGES["intarctive"]["icon"],
