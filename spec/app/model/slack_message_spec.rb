@@ -38,6 +38,48 @@ describe SlackMessage do
       end
     end
   end
+  describe "#notification_message_post_body" do
+    before do
+      allow(ENV).to receive(:fetch).with("SLACK_CHANNEL").and_return("CH15TJXEX")
+    end
+    context "ok" do
+      it do
+        email_fixture = <<~EMAIL_BODY
+          To:【U9999999999】株式会社smarthr hoge piyo 様<BR>
+          <BR>
+          平素は格別なご高配を賜り、厚く御礼申し上げます。株式会社SmartHRです。<BR>
+          以下のとおり入館申請を行いました。<BR>
+          I have registered your admission application as below.<BR>
+          =========================================================<BR>
+          <BR>
+          ■　ご来訪日時/Date<BR>
+          2022/03/31(Thu) 18:00<BR>
+          <BR>
+          ■　ビル/Building<BR>
+          住友不動産六本木グランドタワー/SUMITOMO FUDOSAN ROPPONGI GRAND TOWER<BR>
+          <BR>
+          ■　バーコード/Barcode<BR>
+          入館ID/Guest ID:12345678901<BR>
+          <BR>
+          　　<img src='12345678901.BMP' width='200'><BR>
+          <BR>
+        EMAIL_BODY
+        email = Email.new(email_fixture)
+        instance = described_class.new(email: email)
+
+        expected = {
+          icon_emoji: ":office:",
+          channel: "CH15TJXEX",
+          text: "<@U9999999999> 入館受付が完了しました :tada:",
+          attachments: [{
+            color: "good",
+            fields: instance.send(:notification_message_attachment_fields)
+          }]
+        }
+        expect(instance.send(:notification_message_post_body)).to eq expected
+      end
+    end
+  end
   describe "#received_message_attachment_fields" do
     context "ok" do
       it do
