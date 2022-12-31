@@ -58,13 +58,13 @@ describe SlackMessage do
       end
     end
   end
-  describe "#attachments" do
+  describe "#attachment" do
     context "default color" do
       it do
         expected = { fields: [],
                      color: "good" }
         args = { fields: [] }
-        expect(instance.send(:attachments, args)).to eq expected
+        expect(instance.send(:attachment, args)).to eq expected
       end
     end
     context "not default color" do
@@ -73,7 +73,7 @@ describe SlackMessage do
                      color: "#FFFFFF" }
         args = { fields: [],
                  color: "#FFFFFF" }
-        expect(instance.send(:attachments, args)).to eq expected
+        expect(instance.send(:attachment, args)).to eq expected
       end
     end
   end

@@ -25,9 +25,7 @@ class SlackMessage
       channel: @dialog_submission.slack_channel_id,
       user: @dialog_submission.slack_user_id,
       text: MESSAGES["intarctive"]["text_notification"],
-      attachments: [
-        attachments(fields: received_message_attachment_fields)
-      ] }
+      attachments: [attachment(fields: received_message_attachment_fields)] }
   end
 
   private
@@ -52,7 +50,7 @@ class SlackMessage
   # @return [Hash]
   # @see https://api.slack.com/reference/messaging/attachments
   # @private
-  def attachments(fields:, color: "good")
+  def attachment(fields:, color: "good")
     { color: color,
       fields: fields }
   end
