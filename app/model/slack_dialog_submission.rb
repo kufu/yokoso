@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # @see https://api.slack.com/dialogs
-class SlackDialogSubmittion
+class SlackDialogSubmission
   def initialize(post_body)
     @post_body = post_body
   end

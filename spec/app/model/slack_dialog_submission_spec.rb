@@ -3,7 +3,7 @@
 require "spec_helper"
 require_relative "../../../app/model/slack_dialog_submission"
 
-describe SlackDialogSubmittion do
+describe SlackDialogSubmission do
   let(:instance) { described_class.new(post_body) }
 
   describe "#slack_user_id" do
