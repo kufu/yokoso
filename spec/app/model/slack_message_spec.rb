@@ -28,10 +28,7 @@ describe SlackMessage do
           user: "UCKTXCBRB",
           attachments: [{
             color: "good",
-            fields: [
-              { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },
-              { short: true, title: "訪問日時", value: "2023/01/01 08:00" }
-            ]
+            fields: instance.send(:received_message_attachment_fields)
           }]
         }
         expect(instance.send(:received_message_post_body)).to eq expected
