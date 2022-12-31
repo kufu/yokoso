@@ -13,6 +13,7 @@ class SlackDialog
   MESSAGES = open("./config/MESSAGES.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
   # Factory Method
+  # @param trigger_id [String]
   def self.open(trigger_id)
     post_body = new.post_body(trigger_id)
 
