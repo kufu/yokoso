@@ -6,12 +6,20 @@ describe SlackMessage do
   let(:instance) { described_class.new }
 
   describe "#attachments" do
-    context "ok" do
+    context "default color" do
       it do
-        expected = { color: "#FFFFFF",
-                     fields: [] }
-        args = { color: "#FFFFFF",
-                 fields: [] }
+        expected = { fields: [],
+                     color: "good" }
+        args = { fields: [] }
+        expect(instance.send(:attachments, args)).to eq expected
+      end
+    end
+    context "not default color" do
+      it do
+        expected = { fields: [],
+                     color: "#FFFFFF" }
+        args = { fields: [],
+                 color: "#FFFFFF" }
         expect(instance.send(:attachments, args)).to eq expected
       end
     end

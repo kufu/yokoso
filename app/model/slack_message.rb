@@ -2,7 +2,8 @@
 
 # @see 
 class SlackMessage
-  def attachments(color:, fields:)
+  # @see https://api.slack.com/reference/messaging/attachments
+  def attachments(fields:, color: "good")
     { color: color,
       fields: fields }
   end
