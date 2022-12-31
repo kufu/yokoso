@@ -35,7 +35,7 @@ describe SlackDialog do
     end
   end
   describe "#date_select_options" do
-    context "正常系" do
+    context "ok" do
       it do
         expected = [{ label: "2022/12/31 土", value: "2022/12/31" },
                     { label: "2023/01/01 日", value: "2023/01/01" },
@@ -135,7 +135,7 @@ describe SlackDialog do
     end
   end
   describe "#time_select_options" do
-    context "正常系" do
+    context "ok" do
       it do
         expected = [{ label: "08:00", value: "08:00" },
                     { label: "08:30", value: "08:30" },

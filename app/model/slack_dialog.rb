@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'date'
+require "date"
 
 # @see https://api.slack.com/dialogs
 class SlackDialog
@@ -28,19 +28,16 @@ class SlackDialog
       options: options }
   end
 
+  # @return [Array]
   def date_select_options
-    # Array: hh:mm
-    # 08:00, 08:30, ... , 21:00, 21:30
-    today = Date.today
-    dates = []
-    90.times do |i|
-      formatted_date = (today + i).strftime("%Y/%m/%d")
-      wday = %w[日 月 火 水 木 金 土][(today + i).wday]
-      date = { label: "#{formatted_date} #{wday}", value: formatted_date }
-      dates.push(date)
-    end
+    dates = (Date.today...(Date.today + 90)).to_a
+    dates.map do |date|
+      date_text = date.strftime("%Y/%m/%d")
+      wday = %w[日 月 火 水 木 金 土][date.wday]
 
-    dates
+      { label: "#{date_text} #{wday}",
+        value: date_text }
+    end
   end
 
   def time_select_options
