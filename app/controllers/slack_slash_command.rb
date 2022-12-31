@@ -9,12 +9,9 @@ module SlackSlashCommand
     req = URI.decode_www_form(request.body.read)
     trigger_id = req.assoc("trigger_id").last
 
-    # dialog form
-    slack_dialog = SlackDialog.new
-
     # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-    client.dialog_open(slack_dialog.post_body(trigger_id))
+    client.dialog_open(SlackDialog.post_body(trigger_id))
   end
 
   module_function :run

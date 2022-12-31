@@ -12,6 +12,13 @@ class SlackDialog
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
   MESSAGES = open("./config/MESSAGES.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
+  # Factory Method
+  def self.post_body(trigger_id)
+    new.post_body(trigger_id)
+  end
+
+  # @param trigger_id [String]
+  # @return [Hash]
   def post_body(trigger_id)
     { trigger_id: trigger_id,
       dialog: {
