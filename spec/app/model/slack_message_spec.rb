@@ -1,10 +1,41 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require_relative "../../../app/model/slack_dialog_submission"
 require_relative "../../../app/model/slack_message"
+
 describe SlackMessage do
   let(:instance) { described_class.new }
 
+  describe "#received_message_post_body" do
+    context "ok" do
+      it do
+        modal_submit_fixture = { type: "dialog_submission",
+                                 user: { id: "UCKTXCBRB" },
+                                 channel: { id: "CH15TJXEX" },
+                                 submission: { date: "2023/01/01",
+                                               time: "08:00",
+                                               company_name: "SmartHR",
+                                               name: "須磨 英知" } }
+        dialog_result = SlackDialogSubmission.new(modal_submit_fixture)
+
+        expected = {
+          channel: "CH15TJXEX",
+          icon_emoji: ":office:",
+          text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray:",
+          user: "UCKTXCBRB",
+          attachments: [{
+            fields: [
+              { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },
+              { short: true, title: "訪問日時", value: "2023/01/01 08:00" }
+            ]
+          }]
+
+        }
+        expect(instance.send(:received_message_post_body, dialog_result)).to eq expected
+      end
+    end
+  end
   describe "#attachments" do
     context "default color" do
       it do

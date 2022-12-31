@@ -20,7 +20,6 @@ class SlackMessage
       text: MESSAGES["intarctive"]["text_notification"],
       attachments: [
         {
-          color: "#439FE0",
           fields: [
             {
               title: MESSAGES["intarctive"]["recept_name"],
