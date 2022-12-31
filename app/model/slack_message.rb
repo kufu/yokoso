@@ -5,6 +5,7 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
+  # Factory Method
   # @param dialog_submission [SlackDialogSubmission]
   def self.post_received_message(dialog_submission)
     post_body = new.received_message_post_body(dialog_submission)
@@ -13,22 +14,24 @@ class SlackMessage
     client.chat_postEphemeral(post_body)
   end
 
-  def received_message_post_body(dialog_result)
+  # @param dialog_submission [SlackDialogSubmission]
+  # @return [Hash]
+  def received_message_post_body(dialog_submission)
     { icon_emoji: MESSAGES["intarctive"]["icon"],
-      channel: dialog_result.slack_channel_id,
-      user: dialog_result.slack_user_id,
+      channel: dialog_submission.slack_channel_id,
+      user: dialog_submission.slack_user_id,
       text: MESSAGES["intarctive"]["text_notification"],
       attachments: [
         {
           fields: [
             {
               title: MESSAGES["intarctive"]["recept_name"],
-              value: "#{dialog_result.company_name} #{dialog_result.visitor_name} 様",
+              value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様",
               short: true
             },
             {
               title: MESSAGES["intarctive"]["recept_datetime"],
-              value: "#{dialog_result.recept_date} #{dialog_result.recept_time}",
+              value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}",
               short: true
             }
           ]
