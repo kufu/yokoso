@@ -12,7 +12,7 @@ module SlackDialog
     # today, today + 1, today + 90
     today = Date.today
     dates = []
-    90.each do |i|
+    90.times do |i|
       formatted_date = (today + i).strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][(today + i).wday]
       date = { label: "#{formatted_date} #{wday}", value: formatted_date }
