@@ -22,7 +22,7 @@ class SlackMessage
       user: dialog_submission.slack_user_id,
       text: MESSAGES["intarctive"]["text_notification"],
       attachments: [
-        { fields: received_message_attachment_fields(dialog_submission) }
+        attachments(fields: received_message_attachment_fields(dialog_submission))
       ] }
   end
 
@@ -30,15 +30,18 @@ class SlackMessage
 
   # @param dialog_submission [SlackDialogSubmission]
   # @return [Array] attachment_field array
+  # @private
   def received_message_attachment_fields(dialog_submission)
-    [attachment_field(
-      title: MESSAGES["intarctive"]["recept_name"],
-      value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様"
-    ),
-     attachment_field(
-       title: MESSAGES["intarctive"]["recept_datetime"],
-       value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}"
-     )]
+    [
+      attachment_field(
+        title: MESSAGES["intarctive"]["recept_name"],
+        value: "#{dialog_submission.company_name} #{dialog_submission.visitor_name} 様"
+      ),
+      attachment_field(
+        title: MESSAGES["intarctive"]["recept_datetime"],
+        value: "#{dialog_submission.recept_date} #{dialog_submission.recept_time}"
+      )
+    ]
   end
 
   # @param fields [Array]  attachment_field
