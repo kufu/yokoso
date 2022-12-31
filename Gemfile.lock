@@ -135,7 +135,6 @@ GEM
     rack (2.2.4)
     rack-protection (2.2.3)
       rack
-    rack-unreloader (2.0.0)
     rainbow (3.1.1)
     rake (13.0.6)
     rb-fsevent (0.11.2)
@@ -221,7 +220,6 @@ DEPENDENCIES
   http
   mechanize
   nokogiri (>= 1.10.4)
-  rack-unreloader
   rspec (~> 3.12)
   rubocop
   sidekiq
