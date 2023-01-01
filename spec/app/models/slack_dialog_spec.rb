@@ -33,7 +33,7 @@ describe SlackDialog do
                          placeholder: "「様」をつけると入館証が「様様」になるよ！" }]
           }
         }
-        expect(instance.post_body("trigger_id")).to eq expected
+        expect(instance.send(:post_body, "trigger_id")).to eq expected
       end
     end
   end
