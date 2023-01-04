@@ -3,23 +3,25 @@
 require "mechanize"
 require "sidekiq"
 require "slack-ruby-client"
+require_relative "../model/slack_dialog_submission"
+require_relative "../model/slack_message"
 
 class ReceptionWorker
   include Sidekiq::Worker
   sidekiq_options queue: :default, retry: false
 
   def perform(slack_dialog)
+    dialog_submission = SlackDialogSubmission.new(slack_dialog)
     # slack dialog input
     recept_date = slack_dialog["submission"]["date"]
     recept_time = slack_dialog["submission"]["time"]
     recept_company_name = slack_dialog["submission"]["company_name"]
     recept_visitor_name = slack_dialog["submission"]["name"]
     slack_id = slack_dialog["user"]["id"]
-    slack_channel = slack_dialog["channel"]["id"]
 
     # srd-gate login
     agent = Mechanize.new
-    agent.get("https://srd-gate.com/03/login.cgi")
+    agent.get("https://srd-gate.com/03/ login.cgi")
     agent.page.form.field_with(name: "userid").value = ENV.fetch("SRD_GATE_USERNAME")
     agent.page.form.field_with(name: "passwd").value = ENV.fetch("SRD_GATE_PASSWORD")
     agent.page.form.submit
@@ -44,34 +46,6 @@ class ReceptionWorker
     # regist
     agent.page.form.submit
 
-    client = Slack::Web::Client.new(
-      token: ENV.fetch("SLACK_TOKEN")
-    )
-
-    messages = open("./config/messages.yml", "r") { |f| YAML.safe_load(f) }
-
-    client.chat_postEphemeral(
-      icon_emoji: messages["intarctive"]["icon"],
-      channel: slack_channel,
-      user: slack_id,
-      text: messages["intarctive"]["text_notification"],
-      attachments: [
-        {
-          color: "#439FE0",
-          fields: [
-            {
-              title: messages["intarctive"]["recept_name"],
-              value: "#{recept_company_name} #{recept_visitor_name} 様",
-              short: true
-            },
-            {
-              title: messages["intarctive"]["recept_datetime"],
-              value: "#{recept_date} #{recept_time}",
-              short: true
-            }
-          ]
-        }
-      ]
-    )
+    SlackMessage.post_received_message(dialog_submission)
   end
 end
