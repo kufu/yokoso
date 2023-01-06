@@ -3,8 +3,8 @@
 require "mechanize"
 require "sidekiq"
 require "slack-ruby-client"
-require_relative "../model/slack_dialog_submission"
-require_relative "../model/slack_message"
+require_relative "../models/slack_dialog_submission"
+require_relative "../models/slack_message"
 
 class ReceptionWorker
   include Sidekiq::Worker
