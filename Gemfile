@@ -6,6 +6,7 @@ git_source(:github) { |_repo_name| "https://github.com/kufu/yokoso" }
 
 ruby File.read(".ruby-version").rstrip
 
+gem "activesupport"
 gem "config"
 gem "http"
 gem "mechanize"

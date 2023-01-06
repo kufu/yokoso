@@ -51,16 +51,21 @@ GEM
       dry-equalizer (~> 0.2, >= 0.2.2)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    faraday (0.17.6)
-      multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.13.1)
-      faraday (>= 0.7.4, < 1.0)
+    faraday (2.7.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-mashify (0.1.1)
+      faraday (~> 2.0)
+      hashie
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
     formatador (1.1.0)
-    gli (2.18.1)
+    gli (2.21.0)
     guard (2.18.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -75,7 +80,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    hashie (3.6.0)
+    hashie (5.0.0)
     http (4.2.0)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -188,10 +193,10 @@ GEM
       rack-protection (= 2.2.3)
       sinatra (= 2.2.3)
       tilt (~> 2.0)
-    slack-ruby-client (0.14.2)
-      activesupport
-      faraday (>= 0.9)
-      faraday_middleware
+    slack-ruby-client (2.0.0)
+      faraday (>= 2.0)
+      faraday-mashify
+      faraday-multipart
       gli
       hashie
       websocket-driver
@@ -205,7 +210,7 @@ GEM
     unicode-display_width (2.3.0)
     webrick (1.7.0)
     webrobots (0.1.2)
-    websocket-driver (0.7.1)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
 
@@ -213,6 +218,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   byebug
   config
   guard
