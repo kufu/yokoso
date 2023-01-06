@@ -10,6 +10,8 @@ module SlackSlashCommand
     trigger_id = req.assoc("trigger_id").last
 
     SlackDialog.open(trigger_id)
+
+    :ok
   end
 
   module_function :run
