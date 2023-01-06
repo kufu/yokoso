@@ -21,7 +21,7 @@ class ReceptionWorker
 
     # srd-gate login
     agent = Mechanize.new
-    agent.get("https://srd-gate.com/03/ login.cgi")
+    agent.get("https://srd-gate.com/03/login.cgi")
     agent.page.form.field_with(name: "userid").value = ENV.fetch("SRD_GATE_USERNAME")
     agent.page.form.field_with(name: "passwd").value = ENV.fetch("SRD_GATE_PASSWORD")
     agent.page.form.submit
