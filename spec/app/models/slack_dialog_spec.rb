@@ -12,7 +12,7 @@ describe SlackDialog do
         expected = {
           trigger_id: "trigger_id",
           dialog: {
-            title: "入館受付申請",
+            title: "六本木グランドタワー入館受付申請",
             callback_id: "callback_id",
             submit_label: "送信",
             elements: [{ label: "来訪日",
