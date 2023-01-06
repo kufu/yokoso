@@ -6,6 +6,7 @@ git_source(:github) { |_repo_name| "https://github.com/kufu/yokoso" }
 
 ruby File.read(".ruby-version").rstrip
 
+gem "activesupport"
 gem "config"
 gem "http"
 gem "mechanize"
@@ -13,7 +14,7 @@ gem "nokogiri", ">= 1.10.4"
 gem "sidekiq"
 gem "sinatra"
 gem "sinatra-contrib"
-gem "slack-ruby-client"
+gem "slack-ruby-client", "~> 1.0"
 
 group :development do
   gem "byebug"

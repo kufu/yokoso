@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support"
+require "active_support/core_ext/hash/indifferent_access"
 
 # @see https://api.slack.com/dialogs
 class SlackDialogSubmission
