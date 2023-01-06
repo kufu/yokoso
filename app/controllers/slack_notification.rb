@@ -2,7 +2,7 @@
 
 require "json"
 require "slack-ruby-client"
-require_relative "..//model/email"
+require_relative "../models/email"
 
 module SlackNotification
   def run(request)
@@ -77,6 +77,8 @@ module SlackNotification
       ],
       thread_ts: res.ts
     )
+
+    :ok
   end
 
   module_function :run

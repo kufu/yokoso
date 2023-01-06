@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "net/http"
-require_relative "../model/slack_dialog"
+require_relative "../models/slack_dialog"
 
 # @see https://api.slack.com/interactivity/slash-commands
 module SlackSlashCommand
@@ -10,6 +10,8 @@ module SlackSlashCommand
     trigger_id = req.assoc("trigger_id").last
 
     SlackDialog.open(trigger_id)
+
+    :ok
   end
 
   module_function :run

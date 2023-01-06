@@ -11,6 +11,8 @@ module SlackInteractiveMessage
     # Slack のレスポンス3秒以内ルールのため非同期処理
     # https://api.slack.com/dialogs#submit
     ReceptionWorker.perform_async JSON.parse(payload)
+
+    :ok
   end
 
   module_function :run
