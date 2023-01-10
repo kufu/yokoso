@@ -8,7 +8,6 @@ ruby File.read(".ruby-version").rstrip
 
 gem "activesupport"
 gem "config"
-gem "http"
 gem "mechanize"
 gem "nokogiri", ">= 1.10.4"
 gem "sidekiq"
