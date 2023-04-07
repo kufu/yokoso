@@ -224,7 +224,7 @@ DEPENDENCIES
   slack-ruby-client
 
 RUBY VERSION
-   ruby 3.0.5p211
+   ruby 3.0.6p216
 
 BUNDLED WITH
    2.2.33
