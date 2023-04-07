@@ -47,7 +47,7 @@ describe SlackDialog do
         args = { label: "label",
                  name: "element name",
                  placeholder: "placeholder" }
-        expect(instance.send(:textarea_element, args)).to eq expected
+        expect(instance.send(:textarea_element, **args)).to eq expected
       end
     end
   end
@@ -61,7 +61,7 @@ describe SlackDialog do
         args = { label: "label",
                  name: "element name",
                  options: [] }
-        expect(instance.send(:select_element, args)).to eq expected
+        expect(instance.send(:select_element, **args)).to eq expected
       end
     end
   end
