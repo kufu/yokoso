@@ -52,7 +52,7 @@ GEM
       dry-initializer (~> 3.0)
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
-    faraday (2.7.2)
+    faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-mashify (0.1.1)
@@ -106,7 +106,7 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.18.0)
     multi_json (1.15.0)
-    multipart-post (2.2.3)
+    multipart-post (2.3.0)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nenv (0.3.0)
@@ -183,13 +183,12 @@ GEM
       rack-protection (= 2.2.3)
       sinatra (= 2.2.3)
       tilt (~> 2.0)
-    slack-ruby-client (2.0.0)
+    slack-ruby-client (2.1.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
       gli
       hashie
-      websocket-driver
     thor (1.2.1)
     tilt (2.0.11)
     tzinfo (2.0.6)
@@ -200,9 +199,6 @@ GEM
     unicode-display_width (2.4.2)
     webrick (1.7.0)
     webrobots (0.1.2)
-    websocket-driver (0.7.5)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.5)
     zeitwerk (2.6.6)
 
 PLATFORMS
