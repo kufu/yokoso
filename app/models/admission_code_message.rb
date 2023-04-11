@@ -12,7 +12,7 @@ class AdmissionCodeMessage
   end
 
   def post
-    ChatMessageSender.new.post_private_message(post_body)
+    ChatMessageSender.new.post_public_message(api_post_body)
   end
 
   private

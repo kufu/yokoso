@@ -4,6 +4,7 @@ require "json"
 require "slack-ruby-client"
 require_relative "../models/email"
 require_relative "../models/chat_message_sender"
+require_relative "../models/admission_code_message"
 
 module SlackNotification
   def run(request)
@@ -14,33 +15,7 @@ module SlackNotification
     # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
-    res = ChatMessageSender.new.post_public_message(
-      icon_emoji: messages["notification"]["icon"],
-      channel: ENV.fetch("SLACK_CHANNEL"),
-      text: "<@#{email.slack_id}> #{messages['notification']['text_notification']}",
-      attachments: [
-        {
-          color: "#36a64f",
-          fields: [
-            {
-              title: messages["notification"]["recept_name"],
-              value: "#{email.recept_name} 様",
-              short: true
-            },
-            {
-              title: messages["notification"]["recept_datetime"],
-              value: email.recept_date,
-              short: true
-            },
-            {
-              title: messages["notification"]["recept_id"],
-              value: email.recept_id,
-              short: true
-            }
-          ]
-        }
-      ]
-    )
+    res = AdmissionCodeMessage.new(email).post
 
     barcode_url = "https://barcode.tec-it.com/barcode.ashx?data=#{email.recept_id}&code=Code128"
     text_guide_jap = messages["notification"]["text_guide_jap"]
