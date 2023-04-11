@@ -30,7 +30,7 @@ describe AdmissionCodeMessage do
     EMAIL_BODY
   end
 
-  describe "#notification_message_post_body" do
+  describe "#api_post_body" do
     before do
       allow(ENV).to receive(:fetch).with("SLACK_CHANNEL").and_return("CH15TJXEX")
     end
@@ -41,13 +41,13 @@ describe AdmissionCodeMessage do
         text: "<@U9999999999> 入館受付が完了しました :tada:",
         attachments: [{
           color: "good",
-          fields: instance.send(:notification_message_attachment_fields)
+          fields: instance.send(:attachment_fields)
         }]
       }
-      expect(instance.send(:notification_message_post_body)).to eq expected
+      expect(instance.send(:api_post_body)).to eq expected
     end
   end
-  describe "#notification_message_attachment_fields" do
+  describe "#attachment_fields" do
     it "アタッチメント Array が返ってくる" do
       expected = [
         { title: "来訪者名",
@@ -60,7 +60,7 @@ describe AdmissionCodeMessage do
           value: "12345678901",
           short: true }
       ]
-      expect(instance.send(:notification_message_attachment_fields)).to eq expected
+      expect(instance.send(:attachment_fields)).to eq expected
     end
   end
 end

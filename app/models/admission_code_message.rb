@@ -21,19 +21,19 @@ class AdmissionCodeMessage
   # @see https://api.slack.com/methods/chat.postMessage
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
-  def notification_message_post_body
+  def api_post_body
     { icon_emoji: MESSAGES["notification"]["icon"],
       channel: ENV.fetch("SLACK_CHANNEL"),
       text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
       attachments: [
         color: "good",
-        fields: notification_message_attachment_fields
+        fields: attachment_fields
       ] }
   end
 
   # @return [Array] attachment_field array
   # @private
-  def notification_message_attachment_fields
+  def attachment_fields
     [
       { title: MESSAGES["notification"]["recept_name"],
         value: "#{@email.recept_name} 様",
