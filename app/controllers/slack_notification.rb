@@ -3,6 +3,7 @@
 require "json"
 require "slack-ruby-client"
 require_relative "../models/email"
+require_relative "../models/chat_message_sender"
 
 module SlackNotification
   def run(request)
@@ -10,14 +11,10 @@ module SlackNotification
     mail_body = json["body"]
     email = Email.new(mail_body)
 
-    client = Slack::Web::Client.new(
-      token: ENV.fetch("SLACK_TOKEN")
-    )
-
     # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
     messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
 
-    res = client.chat_postMessage(
+    res = ChatMessageSender.new.post_public_message(
       icon_emoji: messages["notification"]["icon"],
       channel: ENV.fetch("SLACK_CHANNEL"),
       text: "<@#{email.slack_id}> #{messages['notification']['text_notification']}",
@@ -65,7 +62,7 @@ module SlackNotification
     text_guide_jap.gsub!("RECEPT_DATE", recept_date_jap)
     text_guide_eng.gsub!("RECEPT_DATE", email.recept_date)
 
-    client.chat_postMessage(
+    ChatMessageSender.new.post_public_message(
       icon_emoji: ":office:",
       channel: res.channel,
       text: "#{text_guide_jap}\n#{text_guide_eng}",

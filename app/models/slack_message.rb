@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# @see
+require_relative "chat_message_sender"
+
 class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
@@ -18,8 +19,7 @@ class SlackMessage
     post_body = new(dialog_submission: dialog_submission)
                 .send(:received_message_post_body)
 
-    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-    client.chat_postEphemeral(post_body)
+    ChatMessageSender.new.post_private_message(post_body)
   end
 
   # Factory Method
@@ -27,8 +27,7 @@ class SlackMessage
   def self.post_notification_message(email)
     post_body = new(email: email).send(:notification_message_post_body)
 
-    client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-    client.chat_postMessage(post_body)
+    ChatMessageSender.new.post_private_message(post_body)
   end
 
   private
