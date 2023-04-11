@@ -8,9 +8,8 @@ class SlackMessage
 
   # @param dialog_submission [SlackDialogSubmission]
   # @param dialog_submission [Email]
-  def initialize(dialog_submission: nil, email: nil)
+  def initialize(dialog_submission: nil)
     @dialog_submission = dialog_submission
-    @email = email
   end
 
   # Factory Method
@@ -18,14 +17,6 @@ class SlackMessage
   def self.post_received_message(dialog_submission)
     post_body = new(dialog_submission: dialog_submission)
                 .send(:received_message_post_body)
-
-    ChatMessageSender.new.post_private_message(post_body)
-  end
-
-  # Factory Method
-  # @param dialog_submission [Email]
-  def self.post_notification_message(email)
-    post_body = new(email: email).send(:notification_message_post_body)
 
     ChatMessageSender.new.post_private_message(post_body)
   end
@@ -44,17 +35,6 @@ class SlackMessage
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
 
-  # @return [Hash] postMessage API post body
-  # @see https://api.slack.com/methods/chat.postMessage
-  # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
-  # @private
-  def notification_message_post_body
-    { icon_emoji: MESSAGES["notification"]["icon"],
-      channel: ENV.fetch("SLACK_CHANNEL"),
-      text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
-      attachments: [attachment(fields: notification_message_attachment_fields)] }
-  end
-
   # @return [Array] attachment_field array
   # @private
   def received_message_attachment_fields
@@ -67,19 +47,6 @@ class SlackMessage
         title: MESSAGES["intarctive"]["recept_datetime"],
         value: "#{@dialog_submission.recept_date} #{@dialog_submission.recept_time}"
       )
-    ]
-  end
-
-  # @return [Array] attachment_field array
-  # @private
-  def notification_message_attachment_fields
-    [
-      attachment_field(title: MESSAGES["notification"]["recept_name"],
-                       value: "#{@email.recept_name} 様"),
-      attachment_field(title: MESSAGES["notification"]["recept_datetime"],
-                       value: @email.recept_date),
-      attachment_field(title: MESSAGES["notification"]["recept_id"],
-                       value: @email.recept_id)
     ]
   end
 
