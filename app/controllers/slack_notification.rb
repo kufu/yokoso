@@ -8,8 +8,7 @@ require_relative "../models/admission_code_message"
 
 module SlackNotification
   def run(request)
-    json = JSON.parse(request.body.read)
-    mail_body = json["body"]
+    mail_body = request["body"]
     email = Email.new(mail_body)
 
     # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
@@ -50,7 +49,7 @@ module SlackNotification
       thread_ts: res.ts
     )
 
-    :ok
+    ""
   end
 
   module_function :run

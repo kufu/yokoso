@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# require "sinatra/base"
-# require_relative "./app/controllers/app"
-
-# controller = Sinatra.new do
-#   enable :logging
-# end
-
-# map("/") do
-#   run Sinatra.new(controller) { get("/") { "ok" } }
-# end
-
-# map("/app") do
-#   run Yokoso
-# end
-
 require "roda"
 require_relative "./app/controllers/slack_slash_command"
 require_relative "./app/controllers/slack_interactive_message"
@@ -29,7 +14,7 @@ class App < Roda
       SlackInteractiveMessage.run(r.params)
     end
     r.post "app/notification" do
-      SlackNotification.run(r.params)
+      SlackNotification.run(JSON.parse(r.body.read))
     end
   end
 end
