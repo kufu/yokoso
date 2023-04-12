@@ -22,9 +22,14 @@ require_relative "./app/controllers/slack_notification"
 
 class App < Roda
   route do |r|
-    # GET /hello/world request
     r.post "app/dialog" do
       SlackSlashCommand.run(r.params)
+    end
+    r.post "app/interactive" do
+      SlackInteractiveMessage.run(r.params)
+    end
+    r.post "app/notification" do
+      SlackNotification.run(r.params)
     end
   end
 end
