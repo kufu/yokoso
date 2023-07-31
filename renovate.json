@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>kufu/renovate-config"
+  ],
+  "enabledManagers": ["bundler"],
+  "rangeStrategy": "update-lockfile",
+  "schedule": [
+    "after 7am every weekday"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "rubocop",
+        "rubocop-rspec",
+        "guard",
+        "guard-rspec",
+        "guard-rubocop",
+      ],
+      "automerge": true
+    }
+  ]
+}
