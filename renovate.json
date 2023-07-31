@@ -16,7 +16,7 @@
         "rubocop-rspec",
         "guard",
         "guard-rspec",
-        "guard-rubocop",
+        "guard-rubocop"
       ],
       "automerge": true
     }
