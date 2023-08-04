@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "roda"
-require_relative "./app/controllers/slack_slash_command"
-require_relative "./app/controllers/slack_interactive_message"
-require_relative "./app/controllers/slack_notification"
+require_relative "app/controllers/slack_slash_command"
+require_relative "app/controllers/slack_interactive_message"
+require_relative "app/controllers/slack_notification"
 
 class App < Roda
   route do |r|
