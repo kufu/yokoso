@@ -4,7 +4,7 @@ require_relative "chat_message_sender"
 
 class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
-  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
+  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) } # rubocop:disable Security/YAMLLoad
 
   # @param dialog_submission [SlackDialogSubmission]
   # @param dialog_submission [Email]

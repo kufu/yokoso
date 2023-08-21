@@ -10,7 +10,7 @@ class SlackDialog
   SELECT_TIME_HOUR_END    = 21
 
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoad
-  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
+  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) } # rubocop:disable Security/YAMLLoad
 
   # Factory Method
   # @param trigger_id [String]
