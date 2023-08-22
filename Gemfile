@@ -9,7 +9,6 @@ ruby File.read(".ruby-version").rstrip
 gem "activesupport"
 gem "config"
 gem "mechanize"
-gem "nokogiri", ">= 1.10.4"
 gem "roda"
 gem "sidekiq"
 gem "slack-ruby-client"
