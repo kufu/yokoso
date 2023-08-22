@@ -28,7 +28,7 @@ class SlackDialog
   # @return [Hash]
   # @private
   def post_body(trigger_id)
-    { trigger_id: trigger_id,
+    { trigger_id:,
       dialog: {
         title: MESSAGES["dialog"]["tilte"],
         callback_id: "callback_id",
@@ -65,10 +65,10 @@ class SlackDialog
   # @see https://api.slack.com/dialogs#dialogs__dialog-form-elements__textarea-elements
   # @pprivate
   def textarea_element(label:, name:, placeholder:)
-    { label: label,
+    { label:,
       type: "text",
-      name: name,
-      placeholder: placeholder }
+      name:,
+      placeholder: }
   end
 
   # @param label    [String]
@@ -78,10 +78,10 @@ class SlackDialog
   # @see https://api.slack.com/dialogs#select_elements
   # @pprivate
   def select_element(label:, name:, options:)
-    { label: label,
+    { label:,
       type: "select",
-      name: name,
-      options: options }
+      name:,
+      options: }
   end
 
   # @return [Array]

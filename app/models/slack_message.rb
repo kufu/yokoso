@@ -15,7 +15,7 @@ class SlackMessage
   # Factory Method
   # @param dialog_submission [SlackDialogSubmission]
   def self.post_received_message(dialog_submission)
-    post_body = new(dialog_submission: dialog_submission)
+    post_body = new(dialog_submission:)
                 .send(:received_message_post_body)
 
     ChatMessageSender.new.post_private_message(post_body)
@@ -56,8 +56,8 @@ class SlackMessage
   # @see https://api.slack.com/reference/messaging/attachments
   # @private
   def attachment(fields:, color: "good")
-    { color: color,
-      fields: fields }
+    { color:,
+      fields: }
   end
 
   # @param title [Array]
@@ -67,8 +67,8 @@ class SlackMessage
   # @see https://api.slack.com/reference/messaging/attachments
   # @private
   def attachment_field(title:, value:, short: true)
-    { title: title,
-      value: value,
-      short: short }
+    { title:,
+      value:,
+      short: }
   end
 end
