@@ -12,7 +12,7 @@ module SlackNotification
     email = Email.new(mail_body)
 
     # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
-    messages = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
+    messages = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) }
 
     res = AdmissionCodeMessage.new(email).post
 

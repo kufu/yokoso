@@ -19,7 +19,7 @@ describe SlackMessage do
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
         dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
-        instance = described_class.new(dialog_submission: dialog_submission)
+        instance = described_class.new(dialog_submission:)
 
         expected = {
           channel: "CH15TJXEX",
@@ -46,7 +46,7 @@ describe SlackMessage do
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
         dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
-        instance = described_class.new(dialog_submission: dialog_submission)
+        instance = described_class.new(dialog_submission:)
 
         expected = [
           { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },

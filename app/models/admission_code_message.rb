@@ -3,7 +3,7 @@
 # チャットツールへのメッセージ送信を扱うクラス
 class AdmissionCodeMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
-  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.load(f) } # rubocop:disable Security/YAMLLoad
+  MESSAGES = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) }
 
   # @param email [Email]
   def initialize(email)
