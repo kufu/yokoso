@@ -65,7 +65,7 @@ GEM
     ffi (1.15.5)
     formatador (1.1.0)
     gli (2.21.0)
-    guard (2.18.0)
+    guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
@@ -89,7 +89,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    lumberjack (1.2.8)
+    lumberjack (1.2.9)
     mechanize (2.9.1)
       addressable (~> 2.8)
       domain_name (~> 0.5, >= 0.5.20190701)
@@ -122,7 +122,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    pry (0.14.1)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.1)
@@ -180,7 +180,7 @@ GEM
       faraday-multipart
       gli
       hashie
-    thor (1.2.1)
+    thor (1.2.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
