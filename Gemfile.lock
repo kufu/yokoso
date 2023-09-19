@@ -53,7 +53,8 @@ GEM
       dry-initializer (~> 3.0)
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
-    faraday (2.7.4)
+    faraday (2.7.11)
+      base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-mashify (0.1.1)
@@ -64,7 +65,7 @@ GEM
     faraday-net_http (3.0.2)
     ffi (1.15.5)
     formatador (1.1.0)
-    gli (2.21.0)
+    gli (2.21.1)
     guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -174,7 +175,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
-    slack-ruby-client (2.1.0)
+    slack-ruby-client (2.2.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
