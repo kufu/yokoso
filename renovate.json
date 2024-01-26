@@ -12,6 +12,7 @@
   "packageRules": [
     {
       "matchPackageNames": [
+        "rspec",
         "rubocop",
         "rubocop-rspec",
         "guard",
