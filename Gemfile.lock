@@ -116,7 +116,7 @@ GEM
       connection_pool
     regexp_parser (2.9.0)
     rexml (3.2.6)
-    roda (3.78.0)
+    roda (3.79.0)
       rack
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
