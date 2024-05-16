@@ -23,7 +23,7 @@ class AdmissionCodeMessage
   # @private
   def api_post_body
     { icon_emoji: MESSAGES["notification"]["icon"],
-      channel: ENV.fetch("SLACK_CHANNEL"),
+      channel: @email.slack_id,
       text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
       attachments: [
         color: "good",
