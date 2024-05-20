@@ -179,7 +179,7 @@ DEPENDENCIES
   guard
   guard-rspec
   mechanize
-  rack (~> 2.2)
+  rack (< 3)
   roda
   rspec (~> 3.12)
   rubocop
