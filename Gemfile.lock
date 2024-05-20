@@ -115,7 +115,8 @@ GEM
     redis-client (0.18.0)
       connection_pool
     regexp_parser (2.9.1)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     roda (3.80.0)
       rack
     rspec (3.13.0)
@@ -159,6 +160,7 @@ GEM
       faraday-multipart
       gli
       hashie
+    strscan (3.1.0)
     thor (1.2.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
