@@ -12,7 +12,18 @@ class AdmissionCodeMessage
   end
 
   def post
-    ChatMessageSender.new.post_public_message(api_post_body)
+    chat_message_sender =  ChatMessageSender.new
+    case ENV.fetch("SEND_MODE")
+    when "Public" then
+      chat_message_sender.post_public_message(api_post_body)
+    when "Private" then
+      chat_message_sender.post_public_message(api_post_body_direct_message)
+    when "Both" then
+      chat_message_sender.post_public_message(api_post_body)
+      chat_message_sender.post_public_message(api_post_body_direct_message)
+    else
+      chat_message_sender.post_public_message(api_post_body)
+    end
   end
 
   private
@@ -22,6 +33,16 @@ class AdmissionCodeMessage
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def api_post_body
+    { icon_emoji: MESSAGES["notification"]["icon"],
+      channel: ENV.fetch("SLACK_CHANNEL"),
+      text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
+      attachments: [
+        color: "good",
+        fields: attachment_fields
+      ] }
+  end
+
+  def api_post_body_direct_message
     { icon_emoji: MESSAGES["notification"]["icon"],
       channel: @email.slack_id,
       text: "<@#{@email.slack_id}> #{MESSAGES['notification']['text_notification']}",
