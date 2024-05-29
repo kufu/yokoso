@@ -3,6 +3,7 @@
 require "spec_helper"
 require_relative "../../../app/models/email"
 require_relative "../../../app/models/admission_code_message"
+require_relative "../../../app/models/chat_message_sender"
 
 describe AdmissionCodeMessage do
   let(:instance) { described_class.new(email) }
@@ -28,6 +29,52 @@ describe AdmissionCodeMessage do
       　　<img src='12345678901.BMP' width='200'><BR>
       <BR>
     EMAIL_BODY
+  end
+
+  describe "#post" do
+    # SEND_MODE が CHANNEL の場合
+    # post_public_message が1回呼ばれること
+    context "SEND_MODE が CHANNEL の場合" do
+      it "post_public_message が1回呼ばれること" do
+        allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("CHANNEL")
+        allow(ENV).to receive(:fetch).with("SLACK_CHANNEL").and_return("CH15TJXEX")
+        chat_message_sender = instance_double(ChatMessageSender)
+        allow(ChatMessageSender).to receive(:new).and_return(chat_message_sender)
+        allow(chat_message_sender).to receive(:post_public_message)
+
+        instance.post
+
+        expect(chat_message_sender).to have_received(:post_public_message).once
+      end
+    end
+
+    context "SEND_MODE が DM の場合" do
+      it "post_direct_message が1回呼ばれること" do
+        allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("DM")
+        allow(ENV).to receive(:fetch).with("SLACK_CHANNEL").and_return("CH15TJXEX")
+        chat_message_sender = instance_double(ChatMessageSender)
+        allow(ChatMessageSender).to receive(:new).and_return(chat_message_sender)
+        allow(chat_message_sender).to receive(:post_public_message)
+
+        instance.post
+
+        expect(chat_message_sender).to have_received(:post_public_message).once
+      end
+    end
+
+    context "SEND_MODE が BOTH の場合" do
+      it "post_public_message が2回呼ばれること" do
+        allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("BOTH")
+        allow(ENV).to receive(:fetch).with("SLACK_CHANNEL").and_return("CH15TJXEX")
+        chat_message_sender = instance_double(ChatMessageSender)
+        allow(ChatMessageSender).to receive(:new).and_return(chat_message_sender)
+        allow(chat_message_sender).to receive(:post_public_message)
+
+        instance.post
+
+        expect(chat_message_sender).to have_received(:post_public_message).twice
+      end
+    end
   end
 
   describe "#api_post_body" do
