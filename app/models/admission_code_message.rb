@@ -12,14 +12,9 @@ class AdmissionCodeMessage
   end
 
   def post
-    chat_message_sender =  ChatMessageSender.new
-    res = nil
-    if send_to_channel?
-      res = chat_message_sender.post_public_message(api_post_body)
-    end
-    if send_to_direct_message?
-      res = chat_message_sender.post_public_message(api_post_body_direct_message)
-    end
+    chat_message_sender = ChatMessageSender.new
+    res = chat_message_sender.post_public_message(api_post_body) if send_to_channel?
+    res = chat_message_sender.post_public_message(api_post_body_direct_message) if send_to_direct_message?
     res
   end
 
@@ -30,7 +25,7 @@ class AdmissionCodeMessage
   end
 
   def send_to_direct_message?
-    %w[DM Both].include?(ENV.fetch("SEND_MODE"))
+    %w[DM BOTH].include?(ENV.fetch("SEND_MODE"))
   end
 
   # @return [Hash] postMessage API post body
