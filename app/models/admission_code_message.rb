@@ -13,20 +13,25 @@ class AdmissionCodeMessage
 
   def post
     chat_message_sender =  ChatMessageSender.new
-    case ENV.fetch("SEND_MODE")
-    when "Public" then
-      chat_message_sender.post_public_message(api_post_body)
-    when "Private" then
-      chat_message_sender.post_public_message(api_post_body_direct_message)
-    when "Both" then
-      chat_message_sender.post_public_message(api_post_body)
-      chat_message_sender.post_public_message(api_post_body_direct_message)
-    else
-      chat_message_sender.post_public_message(api_post_body)
+    res = nil
+    if send_to_channel?
+      res = chat_message_sender.post_public_message(api_post_body)
     end
+    if send_to_direct_message?
+      res = chat_message_sender.post_public_message(api_post_body_direct_message)
+    end
+    res
   end
 
   private
+
+  def send_to_channel?
+    %w[CHANNEL BOTH].include?(ENV.fetch("SEND_MODE"))
+  end
+
+  def send_to_direct_message?
+    %w[DM Both].include?(ENV.fetch("SEND_MODE"))
+  end
 
   # @return [Hash] postMessage API post body
   # @see https://api.slack.com/methods/chat.postMessage
