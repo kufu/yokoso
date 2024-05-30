@@ -38,7 +38,7 @@ module SlackNotification
 
     ChatMessageSender.new.post_public_message(
       icon_emoji: ":office:",
-      channel: res.channel, # DM に送るの切り替えを入れる場合はここに判定が入る
+      channel: res.channel,
       text: "#{text_guide_jap}\n#{text_guide_eng}",
       attachments: [
         {
