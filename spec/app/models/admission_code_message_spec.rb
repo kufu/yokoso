@@ -32,8 +32,6 @@ describe AdmissionCodeMessage do
   end
 
   describe "#post" do
-    # SEND_MODE が CHANNEL の場合
-    # post_public_message が1回呼ばれること
     context "SEND_MODE が CHANNEL の場合" do
       it "post_public_message が1回呼ばれること" do
         allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("CHANNEL")
