@@ -31,8 +31,22 @@ class SlackMessage
     { icon_emoji: MESSAGES["intarctive"]["icon"],
       channel: @dialog_submission.slack_channel_id,
       user: @dialog_submission.slack_user_id,
-      text: MESSAGES["intarctive"]["text_notification"],
+      text:,
       attachments: [attachment(fields: received_message_attachment_fields)] }
+  end
+
+  def text
+    if send_to_direct_message?
+      MESSAGES["intarctive"]["dm_text_notification"]
+    else
+      MESSAGES["intarctive"]["text_notification"]
+    end
+  end
+
+  # @private
+  # @return [Boolean]
+  def send_to_direct_message?
+    %w[DM BOTH].include?(ENV.fetch("SEND_MODE"))
   end
 
   # @return [Array] attachment_field array
