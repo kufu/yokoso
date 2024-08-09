@@ -108,7 +108,7 @@ GEM
       method_source (~> 1.0)
     public_suffix (6.0.0)
     racc (1.8.1)
-    rack (2.2.9)
+    rack (3.1.7)
     rainbow (3.1.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
@@ -181,7 +181,7 @@ DEPENDENCIES
   guard
   guard-rspec
   mechanize
-  rack (< 3)
+  rack (< 4)
   roda
   rspec (~> 3.12)
   rubocop
