@@ -31,6 +31,10 @@
       "description": "会社の電話番号（申請に必要） ex) 03-1234-5678",
       "value": ""
     },
+    "SEND_MODE": {
+      "description": "通知の送信先（CHANNEL or DM or BOTH）",
+      "value": "BOTH"
+    },
     "JEMALLOC_ENABLED": {
       "description": "jemallocを常に使用する",
       "value": "true"
