@@ -118,7 +118,7 @@ GEM
     regexp_parser (2.9.2)
     rexml (3.3.4)
       strscan
-    roda (3.82.0)
+    roda (3.83.0)
       rack
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
