@@ -37,17 +37,31 @@ describe SlackDialog do
       end
     end
   end
-  describe "#textarea_element" do
+  describe "#plain_text_element" do
     context "ok" do
       it do
-        expected = { label: "label",
-                     type: "text",
-                     name: "element name",
-                     placeholder: "placeholder" }
-        args = { label: "label",
-                 name: "element name",
-                 placeholder: "placeholder" }
-        expect(instance.send(:textarea_element, **args)).to eq expected
+        expected = {
+          type: "input",
+          block_id: "block_id",
+          element: {
+            action_id: "block_id",
+            type: "plain_text_input",
+            placeholder: {
+              type: "plain_text",
+              text: "placeholder"
+            }
+          },
+          label: {
+            type: "plain_text",
+            text: "label"
+          }
+        }
+        args = {
+          block_id: "block_id",
+          label: "label",
+          placeholder: "placeholder"
+        }
+        expect(instance.send(:plain_text_element, **args)).to eq expected
       end
     end
   end

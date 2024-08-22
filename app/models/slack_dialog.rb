@@ -28,7 +28,8 @@ class SlackDialog
   # @return [Hash]
   # @private
   def post_body
-    { type: "modal",
+    {
+      type: "modal",
       callback_id: "callback_id",
       title: {
         type: "plain_text",
@@ -53,47 +54,52 @@ class SlackDialog
           label_text: MESSAGES["dialog"]["recept_time"],
           options: time_select_options
         ),
-        { type: "input",
+        plain_text_element(
           block_id: "recept_company",
-          element: {
-            action_id: "recept_company",
-            type: "plain_text_input"
-          },
-          label: {
-            type: "plain_text",
-            text: MESSAGES["dialog"]["recept_company"]
-          } },
-        { type: "input",
+          label: MESSAGES["dialog"]["recept_company"],
+          placeholder: MESSAGES["dialog"]["recept_company_placeholder"]
+        ),
+        plain_text_element(
           block_id: "recept_name",
-          element: {
-            action_id: "recept_name",
-            type: "plain_text_input"
-          },
-          label: {
-            type: "plain_text",
-            text: MESSAGES["dialog"]["recept_name"]
-          } }
-      ] }
+          label: MESSAGES["dialog"]["recept_name"],
+          placeholder: MESSAGES["dialog"]["recept_name_placeholder"]
+        )
+      ]
+    }
   end
 
-  # @param label        [String]
-  # @param name         [String]
+  # @param block_id     [String]
+  # @param label   [String]
   # @param placeholder  [String]
+  # @param action_id    [String]
   # @return [Hash]
-  # @see https://api.slack.com/dialogs#dialogs__dialog-form-elements__textarea-elements
+  # @see https://api.slack.com/reference/block-kit/block-elements#input
   # @pprivate
-  def textarea_element(label:, name:, placeholder:)
-    { label:,
-      type: "text",
-      name:,
-      placeholder: }
+  def plain_text_element(block_id:, label:, placeholder:, action_id: nil)
+    {
+      type: "input",
+      block_id:,
+      element: {
+        action_id: action_id || block_id,
+        type: "plain_text_input",
+        placeholder: {
+          type: "plain_text",
+          text: placeholder
+        }
+      },
+      label: {
+        type: "plain_text",
+        text: label
+      }
+    }
   end
 
-  # @param block_id    [String]
-  # @param label_text     [String]
-  # @param options  [Array]
+  # @param block_id     [String]
+  # @param label_text   [String]
+  # @param options      [Array]
+  # @param action_id    [String]
   # @return [Hash]
-  # @see https://api.slack.com/dialogs#select_elements
+  # @see https://api.slack.com/reference/block-kit/block-elements#select
   # @pprivate
   def select_element(block_id:, label_text:, options:, action_id: nil)
     {
