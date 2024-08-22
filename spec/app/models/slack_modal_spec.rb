@@ -3,7 +3,7 @@
 require "spec_helper"
 require_relative "../../../app/models/slack_dialog"
 
-describe SlackDialog do
+describe SlackModal do
   let(:instance) { described_class.new }
 
   describe "#post_body" do

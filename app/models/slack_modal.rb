@@ -4,7 +4,7 @@ require "date"
 require "yaml"
 
 # @see https://api.slack.com/dialogs
-class SlackDialog
+class SlackModal
   SELECT_DATE_RANGE_NUM   = 90
   SELECT_TIME_HOUR_START  = 8
   SELECT_TIME_HOUR_END    = 21
@@ -16,10 +16,7 @@ class SlackDialog
   # @param trigger_id [String]
   def self.open(trigger_id)
     post_body = new.send(:post_body)
-
-    # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-    # client.dialog_open(post_body)
     client.views_open(trigger_id:, view: post_body)
   end
 
@@ -124,7 +121,6 @@ class SlackDialog
     dates.map do |date|
       date_text = date.strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][date.wday]
-
       { text: {
           type: "plain_text",
           text: "#{date_text} #{wday}"
