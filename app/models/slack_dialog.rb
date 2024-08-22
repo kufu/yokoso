@@ -74,7 +74,7 @@ class SlackDialog
   # @param action_id    [String]
   # @return [Hash]
   # @see https://api.slack.com/reference/block-kit/block-elements#input
-  # @pprivate
+  # @private
   def plain_text_element(block_id:, label:, placeholder:, action_id: nil)
     {
       type: "input",
@@ -100,7 +100,7 @@ class SlackDialog
   # @param action_id    [String]
   # @return [Hash]
   # @see https://api.slack.com/reference/block-kit/block-elements#select
-  # @pprivate
+  # @private
   def select_element(block_id:, label:, options:, action_id: nil)
     {
       type: "input",
@@ -118,7 +118,7 @@ class SlackDialog
   end
 
   # @return [Array]
-  # @pprivate
+  # @private
   def date_select_options
     dates = (Date.today...(Date.today + SELECT_DATE_RANGE_NUM)).to_a
     dates.map do |date|
@@ -134,7 +134,7 @@ class SlackDialog
   end
 
   # @return [Array]
-  # @pprivate
+  # @private
   def time_select_options
     hours = (SELECT_TIME_HOUR_START..SELECT_TIME_HOUR_END).to_a
     hours.map do |hour|
