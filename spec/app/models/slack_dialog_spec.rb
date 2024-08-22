@@ -83,7 +83,7 @@ describe SlackDialog do
         }
         args = {
           block_id: "block_id",
-          label_text: "label_text",
+          label: "label_text",
           options: []
         }
         expect(instance.send(:select_element, **args)).to eq expected

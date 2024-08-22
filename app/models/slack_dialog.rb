@@ -46,12 +46,12 @@ class SlackDialog
       blocks: [
         select_element(
           block_id: "recept_date",
-          label_text: MESSAGES["dialog"]["recept_date"],
+          label: MESSAGES["dialog"]["recept_date"],
           options: date_select_options
         ),
         select_element(
           block_id: "recept_time",
-          label_text: MESSAGES["dialog"]["recept_time"],
+          label: MESSAGES["dialog"]["recept_time"],
           options: time_select_options
         ),
         plain_text_element(
@@ -95,13 +95,13 @@ class SlackDialog
   end
 
   # @param block_id     [String]
-  # @param label_text   [String]
+  # @param label   [String]
   # @param options      [Array]
   # @param action_id    [String]
   # @return [Hash]
   # @see https://api.slack.com/reference/block-kit/block-elements#select
   # @pprivate
-  def select_element(block_id:, label_text:, options:, action_id: nil)
+  def select_element(block_id:, label:, options:, action_id: nil)
     {
       type: "input",
       block_id:,
@@ -112,7 +112,7 @@ class SlackDialog
       },
       label: {
         type: "plain_text",
-        text: label_text
+        text: label
       }
     }
   end
