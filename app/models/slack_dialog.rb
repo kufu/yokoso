@@ -15,11 +15,12 @@ class SlackDialog
   # Factory Method
   # @param trigger_id [String]
   def self.open(trigger_id)
-    post_body = new.send(:post_body, trigger_id)
+    post_body = new.send(:post_body)
 
     # https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/dialog.rb
     client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
-    client.dialog_open(post_body)
+    # client.dialog_open(post_body)
+    client.views_open(trigger_id:, view: post_body)
   end
 
   private
@@ -92,7 +93,10 @@ class SlackDialog
       date_text = date.strftime("%Y/%m/%d")
       wday = %w[日 月 火 水 木 金 土][date.wday]
 
-      { label: "#{date_text} #{wday}",
+      { text: {
+          type: "plain_text",
+          text: "#{date_text} #{wday}"
+        },
         value: date_text }
     end
   end
