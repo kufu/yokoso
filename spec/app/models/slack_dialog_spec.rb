@@ -54,13 +54,24 @@ describe SlackDialog do
   describe "#select_element" do
     context "ok" do
       it do
-        expected = { label: "label",
-                     type: "select",
-                     name: "element name",
-                     options: [] }
-        args = { label: "label",
-                 name: "element name",
-                 options: [] }
+        expected = {
+          type: "input",
+          block_id: "block_id",
+          element: {
+            type: "static_select",
+            action_id: "block_id",
+            options: []
+          },
+          label: {
+            type: "plain_text",
+            text: "label_text"
+          }
+        }
+        args = {
+          block_id: "block_id",
+          label_text: "label_text",
+          options: []
+        }
         expect(instance.send(:select_element, **args)).to eq expected
       end
     end

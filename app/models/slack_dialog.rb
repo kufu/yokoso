@@ -25,38 +25,55 @@ class SlackDialog
 
   private
 
-  # @param trigger_id [String]
   # @return [Hash]
   # @private
-  def post_body(trigger_id)
-    { trigger_id:,
-      dialog: {
-        title: MESSAGES["dialog"]["tilte"],
-        callback_id: "callback_id",
-        submit_label: MESSAGES["dialog"]["submit"],
-        elements: [
-          select_element(
-            label: MESSAGES["dialog"]["recept_date"],
-            name: "date",
-            options: date_select_options
-          ),
-          select_element(
-            label: MESSAGES["dialog"]["recept_time"],
-            name: "time",
-            options: time_select_options
-          ),
-          textarea_element(
-            label: MESSAGES["dialog"]["recept_company"],
-            name: "company_name",
-            placeholder: MESSAGES["dialog"]["recept_company_placeholder"]
-          ),
-          textarea_element(
-            label: MESSAGES["dialog"]["recept_name"],
-            name: "name",
-            placeholder: MESSAGES["dialog"]["recept_name_placeholder"]
-          )
-        ]
-      } }
+  def post_body
+    { type: "modal",
+      callback_id: "callback_id",
+      title: {
+        type: "plain_text",
+        text: MESSAGES["dialog"]["tilte"]
+      },
+      submit: {
+        type: "plain_text",
+        text: "送信"
+      },
+      close: {
+        type: "plain_text",
+        text: "キャンセル"
+      },
+      blocks: [
+        select_element(
+          block_id: "recept_date",
+          label_text: MESSAGES["dialog"]["recept_date"],
+          options: date_select_options
+        ),
+        select_element(
+          block_id: "recept_time",
+          label_text: MESSAGES["dialog"]["recept_time"],
+          options: time_select_options
+        ),
+        { type: "input",
+          block_id: "recept_company",
+          element: {
+            action_id: "recept_company",
+            type: "plain_text_input"
+          },
+          label: {
+            type: "plain_text",
+            text: MESSAGES["dialog"]["recept_company"]
+          } },
+        { type: "input",
+          block_id: "recept_name",
+          element: {
+            action_id: "recept_name",
+            type: "plain_text_input"
+          },
+          label: {
+            type: "plain_text",
+            text: MESSAGES["dialog"]["recept_name"]
+          } }
+      ] }
   end
 
   # @param label        [String]
@@ -72,17 +89,26 @@ class SlackDialog
       placeholder: }
   end
 
-  # @param label    [String]
-  # @param name     [String]
+  # @param block_id    [String]
+  # @param label_text     [String]
   # @param options  [Array]
   # @return [Hash]
   # @see https://api.slack.com/dialogs#select_elements
   # @pprivate
-  def select_element(label:, name:, options:)
-    { label:,
-      type: "select",
-      name:,
-      options: }
+  def select_element(block_id:, label_text:, options:, action_id: nil)
+    {
+      type: "input",
+      block_id:,
+      element: {
+        type: "static_select",
+        action_id: action_id || block_id,
+        options:
+      },
+      label: {
+        type: "plain_text",
+        text: label_text
+      }
+    }
   end
 
   # @return [Array]
