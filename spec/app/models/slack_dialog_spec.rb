@@ -10,30 +10,83 @@ describe SlackDialog do
     context "ok" do
       it do
         expected = {
-          trigger_id: "trigger_id",
-          dialog: {
-            title: "六本木グランドタワー入館受付申請",
-            callback_id: "callback_id",
-            submit_label: "送信",
-            elements: [{ label: "来訪日",
-                         type: "select",
-                         name: "date",
-                         options: instance.send(:date_select_options) },
-                       { label: "訪問時間",
-                         type: "select",
-                         name: "time",
-                         options: instance.send(:time_select_options) },
-                       { label: "来訪者会社名",
-                         type: "text",
-                         name: "company_name",
-                         placeholder: "会社名がない場合は「面接」「なし」等" },
-                       { label: "来訪者名",
-                         type: "text",
-                         name: "name",
-                         placeholder: "「様」をつけると入館証が「様様」になるよ！" }]
-          }
+          type: "modal",
+          callback_id: "callback_id",
+          title: {
+            type: "plain_text",
+            text: "六本木グランドタワー入館受付申請"
+          },
+          submit: {
+            type: "plain_text",
+            text: "送信"
+          },
+          close: {
+            type: "plain_text",
+            text: "キャンセル"
+          },
+          blocks: [
+            {
+              type: "input",
+              block_id: "recept_date",
+              element: {
+                type: "static_select",
+                action_id: "recept_date",
+                options: instance.send(:date_select_options)
+              },
+              label: {
+                type: "plain_text",
+                text: "来訪日"
+              }
+            },
+            {
+              type: "input",
+              block_id: "recept_time",
+              element: {
+                type: "static_select",
+                action_id: "recept_time",
+                options: instance.send(:time_select_options)
+              },
+              label: {
+                type: "plain_text",
+                text: "訪問時間"
+              }
+            },
+            {
+              type: "input",
+              block_id: "recept_company",
+              element: {
+                action_id: "recept_company",
+                type: "plain_text_input",
+                placeholder: {
+                  type: "plain_text",
+                  text: "会社名がない場合は「面接」「なし」等"
+                }
+              },
+              label: {
+                type: "plain_text",
+                text: "来訪者会社名"
+              }
+            },
+            {
+              type: "input",
+              block_id: "recept_name",
+              element: {
+                action_id: "recept_name",
+                type: "plain_text_input",
+                placeholder: {
+                  type: "plain_text",
+                  text: "「様」をつけると入館証が「様様」になるよ！"
+                }
+              },
+              label: {
+                type: "plain_text",
+                text: "来訪者名"
+              }
+            }
+          ]
         }
-        expect(instance.send(:post_body, "trigger_id")).to eq expected
+
+        expect(instance.send(:post_body)).to eq expected
       end
     end
   end
