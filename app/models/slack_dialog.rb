@@ -107,8 +107,8 @@ class SlackDialog
     hours = (SELECT_TIME_HOUR_START..SELECT_TIME_HOUR_END).to_a
     hours.map do |hour|
       padded_hours = format("%.2d", hour)
-      [{ label: "#{padded_hours}:00", value: "#{padded_hours}:00" },
-       { label: "#{padded_hours}:30", value: "#{padded_hours}:30" }]
+      [{ text: { type: "plain_text", text: "#{padded_hours}:00" }, value: "#{padded_hours}:00" },
+       { text: { type: "plain_text", text: "#{padded_hours}:30" }, value: "#{padded_hours}:30" }]
     end.flatten
   end
 end
