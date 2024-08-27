@@ -3,8 +3,8 @@
 require "active_support"
 require "active_support/core_ext/hash/indifferent_access"
 
-# @see https://api.slack.com/dialogs
-class SlackDialogSubmission
+# @see https://api.slack.com/surfaces/modals
+class SlackModalSubmission
   # @param post_body [Hash]
   def initialize(post_body)
     @post_body = post_body.deep_symbolize_keys

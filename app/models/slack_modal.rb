@@ -3,7 +3,7 @@
 require "date"
 require "yaml"
 
-# @see https://api.slack.com/dialogs
+# @see https://api.slack.com/surfaces/modals
 class SlackModal
   SELECT_DATE_RANGE_NUM   = 90
   SELECT_TIME_HOUR_START  = 8

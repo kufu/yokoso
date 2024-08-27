@@ -2,7 +2,7 @@
 
 require "spec_helper"
 require_relative "../../../app/models/email"
-require_relative "../../../app/models/slack_dialog_submission"
+require_relative "../../../app/models/slack_modal_submission"
 require_relative "../../../app/models/slack_message"
 
 describe SlackMessage do
@@ -19,8 +19,8 @@ describe SlackMessage do
                                                time: "08:00",
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
-        dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
-        instance = described_class.new(dialog_submission:)
+        modal_submission = SlackModalSubmission.new(modal_submit_fixture)
+        instance = described_class.new(modal_submission:)
 
         expected = {
           channel: "CH15TJXEX",
@@ -46,8 +46,8 @@ describe SlackMessage do
                                              time: "08:00",
                                              company_name: "SmartHR",
                                              name: "須磨 英知" } }
-      dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
-      instance = described_class.new(dialog_submission:)
+      modal_submission = SlackModalSubmission.new(modal_submit_fixture)
+      instance = described_class.new(modal_submission:)
 
       expected = {
         channel: "CH15TJXEX",
@@ -72,8 +72,8 @@ describe SlackMessage do
                                                time: "08:00",
                                                company_name: "SmartHR",
                                                name: "須磨 英知" } }
-        dialog_submission = SlackDialogSubmission.new(modal_submit_fixture)
-        instance = described_class.new(dialog_submission:)
+        modal_submission = SlackModalSubmission.new(modal_submit_fixture)
+        instance = described_class.new(modal_submission:)
 
         expected = [
           { short: true, title: "来訪者名", value: "SmartHR 須磨 英知 様" },

@@ -6,7 +6,7 @@ require_relative "../workers/reception_worker"
 module SlackInteractiveMessage
   def run(request)
     # Slack のレスポンス3秒以内ルールのため非同期処理
-    # https://api.slack.com/dialogs#submit
+    # https://api.slack.com/reference/interaction-payloads/views#view_submission
     ReceptionWorker.perform_async JSON.parse(request["payload"])
 
     ""

@@ -2,9 +2,9 @@
 
 require "spec_helper"
 require "json"
-require_relative "../../../app/models/slack_dialog_submission"
+require_relative "../../../app/models/slack_modal_submission"
 
-describe SlackDialogSubmission do
+describe SlackModalSubmission do
   let(:instance) { described_class.new(post_body) }
   let(:fixture) do
     { type: "view_submission",

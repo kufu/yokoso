@@ -6,16 +6,15 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) }
 
-  # @param dialog_submission [SlackDialogSubmission]
-  # @param dialog_submission [Email]
-  def initialize(dialog_submission: nil)
-    @dialog_submission = dialog_submission
+  # @param modal_submission [SlackModalSubmission]
+  def initialize(modal_submission: nil)
+    @modal_submission = modal_submission
   end
 
   # Factory Method
-  # @param dialog_submission [SlackDialogSubmission]
-  def self.post_received_message(dialog_submission)
-    post_body = new(dialog_submission:)
+  # @param modal_submission [SlackModalSubmission]
+  def self.post_received_message(modal_submission)
+    post_body = new(modal_submission:)
                 .send(:received_message_post_body)
 
     ChatMessageSender.new.post_private_message(post_body)
@@ -29,8 +28,8 @@ class SlackMessage
   # @private
   def received_message_post_body
     { icon_emoji: MESSAGES["intarctive"]["icon"],
-      channel: @dialog_submission.slack_channel_id,
-      user: @dialog_submission.slack_user_id,
+      channel: @modal_submission.slack_channel_id,
+      user: @modal_submission.slack_user_id,
       text:,
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
@@ -55,11 +54,11 @@ class SlackMessage
     [
       attachment_field(
         title: MESSAGES["intarctive"]["recept_name"],
-        value: "#{@dialog_submission.company_name} #{@dialog_submission.visitor_name} 様"
+        value: "#{@modal_submission.company_name} #{@modal_submission.visitor_name} 様"
       ),
       attachment_field(
         title: MESSAGES["intarctive"]["recept_datetime"],
-        value: "#{@dialog_submission.recept_date} #{@dialog_submission.recept_time}"
+        value: "#{@modal_submission.recept_date} #{@modal_submission.recept_time}"
       )
     ]
   end
