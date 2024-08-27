@@ -4,7 +4,7 @@ require "date"
 require "yaml"
 
 # @see https://api.slack.com/surfaces/modals
-class SlackModal
+class SlackModal # rubocop:disable Metrics/ClassLength
   SELECT_DATE_RANGE_NUM   = 90
   SELECT_TIME_HOUR_START  = 8
   SELECT_TIME_HOUR_END    = 21
