@@ -11,19 +11,26 @@ describe SlackMessage do
   describe "#received_message_post_body" do
     context "チャンネルに通知する場合" do
       it "適切なメッセージが通知されること" do
+        allow(ENV).to receive(:fetch).and_call_original
         allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("CHANNEL")
-        modal_submit_fixture = { type: "dialog_submission",
+        allow(ENV).to receive(:fetch).with("SLACK_CHANNEL", "UCKTXCBRB").and_return("SLACK_CHANNEL")
+        modal_submit_fixture = { type: "view_submission",
                                  user: { id: "UCKTXCBRB" },
-                                 channel: { id: "CH15TJXEX" },
-                                 submission: { date: "2023/01/01",
-                                               time: "08:00",
-                                               company_name: "SmartHR",
-                                               name: "須磨 英知" } }
+                                 view: {
+                                   state: {
+                                     values: {
+                                       recept_date: { recept_date: { selected_option: { value: "2023/01/01" } } },
+                                       recept_time: { recept_time: { selected_option: { value: "08:00" } } },
+                                       recept_company: { recept_company: { value: "SmartHR" } },
+                                       recept_name: { recept_name: { value: "須磨 英知" } }
+                                     }
+                                   }
+                                 } }
         modal_submission = SlackModalSubmission.new(modal_submit_fixture)
         instance = described_class.new(modal_submission:)
 
         expected = {
-          channel: "CH15TJXEX",
+          channel: "SLACK_CHANNEL",
           icon_emoji: ":office:",
           text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray:",
           user: "UCKTXCBRB",
@@ -38,19 +45,25 @@ describe SlackMessage do
   end
   context "DMに通知する場合" do
     it "適切なメッセージが通知されること" do
+      allow(ENV).to receive(:fetch).and_call_original
       allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("DM")
-      modal_submit_fixture = { type: "dialog_submission",
+      modal_submit_fixture = { type: "view_submission",
                                user: { id: "UCKTXCBRB" },
-                               channel: { id: "CH15TJXEX" },
-                               submission: { date: "2023/01/01",
-                                             time: "08:00",
-                                             company_name: "SmartHR",
-                                             name: "須磨 英知" } }
+                               view: {
+                                 state: {
+                                   values: {
+                                     recept_date: { recept_date: { selected_option: { value: "2023/01/01" } } },
+                                     recept_time: { recept_time: { selected_option: { value: "08:00" } } },
+                                     recept_company: { recept_company: { value: "SmartHR" } },
+                                     recept_name: { recept_name: { value: "須磨 英知" } }
+                                   }
+                                 }
+                               } }
       modal_submission = SlackModalSubmission.new(modal_submit_fixture)
       instance = described_class.new(modal_submission:)
 
       expected = {
-        channel: "CH15TJXEX",
+        channel: "UCKTXCBRB",
         icon_emoji: ":office:",
         text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray: \n受付が完了すると入館IDとバーコードがslackbotで届きます:mailbox_with_mail:",
         user: "UCKTXCBRB",
@@ -65,13 +78,18 @@ describe SlackMessage do
   describe "#received_message_attachment_fields" do
     context "ok" do
       it do
-        modal_submit_fixture = { type: "dialog_submission",
+        modal_submit_fixture = { type: "view_submission",
                                  user: { id: "UCKTXCBRB" },
-                                 channel: { id: "CH15TJXEX" },
-                                 submission: { date: "2023/01/01",
-                                               time: "08:00",
-                                               company_name: "SmartHR",
-                                               name: "須磨 英知" } }
+                                 view: {
+                                   state: {
+                                     values: {
+                                       recept_date: { recept_date: { selected_option: { value: "2023/01/01" } } },
+                                       recept_time: { recept_time: { selected_option: { value: "08:00" } } },
+                                       recept_company: { recept_company: { value: "SmartHR" } },
+                                       recept_name: { recept_name: { value: "須磨 英知" } }
+                                     }
+                                   }
+                                 } }
         modal_submission = SlackModalSubmission.new(modal_submit_fixture)
         instance = described_class.new(modal_submission:)
 
