@@ -7,7 +7,7 @@ common: &common
   recept_id: 入館ID
   icon: ":office:"
 dialog:
-  tilte: 六本木グランドタワー入館受付申請
+  title: 六本木グランドタワー入館受付申請
   submit: 送信
   recept_company_placeholder: 会社名がない場合は「面接」「なし」等
   recept_name_placeholder: 「様」をつけると入館証が「様様」になるよ！

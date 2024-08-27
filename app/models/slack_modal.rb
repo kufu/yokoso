@@ -30,7 +30,7 @@ class SlackModal
       callback_id: "callback_id",
       title: {
         type: "plain_text",
-        text: MESSAGES["dialog"]["tilte"]
+        text: MESSAGES["dialog"]["title"]
       },
       submit: {
         type: "plain_text",
