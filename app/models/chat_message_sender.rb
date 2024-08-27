@@ -14,10 +14,6 @@ class ChatMessageSender
     @slack_api_client.chat_postMessage(post_body)
   end
 
-  def post_direct_message(post_body)
-    @slack_api_client.chat_postMessage(post_body)
-  end
-
   # 特定のユーザーだけに見える形で投稿
   # @param post_body [Hash]
   # @see https://api.slack.com/methods/chat.postEphemeral
