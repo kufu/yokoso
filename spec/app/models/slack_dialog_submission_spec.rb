@@ -9,7 +9,6 @@ describe SlackDialogSubmission do
   let(:fixture) do
     { type: "view_submission",
       user: { id: "UCKTXCBRB" },
-      channel: { id: "CH15TJXEX" },
       view: {
         state: {
           values: {
@@ -23,19 +22,24 @@ describe SlackDialogSubmission do
   end
 
   describe "#slack_user_id" do
-    context "ok" do
-      let(:post_body) { { user: { id: "UCKTXCBRB" } } }
-      it { expect(instance.slack_user_id).to eq "UCKTXCBRB" }
-    end
     context "ok fixture" do
       let(:post_body) { fixture }
       it { expect(instance.slack_user_id).to eq "UCKTXCBRB" }
     end
   end
   describe "#slack_channel_id" do
-    context "ok fixture" do
+    context "環境変数が指定されていない場合" do
       let(:post_body) { fixture }
-      it { expect(instance.slack_channel_id).to eq "CH15TJXEX" }
+      it "投稿者のslack_user_idを返す" do
+        expect(instance.slack_channel_id).to eq "UCKTXCBRB"
+      end
+    end
+    context "環境変数が指定されている場合" do
+      let(:post_body) { fixture }
+      it "環境変数(SLACK_CHANNEL_ID)の値を返す" do
+        allow(ENV).to receive(:fetch).with("SLACK_CHANNEL", "UCKTXCBRB").and_return("SLACK_CHANNEL")
+        expect(instance.slack_channel_id).to eq "SLACK_CHANNEL"
+      end
     end
   end
   describe "#recept_date" do
