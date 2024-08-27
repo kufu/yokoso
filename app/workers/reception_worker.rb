@@ -13,11 +13,11 @@ class ReceptionWorker
   def perform(slack_dialog)
     dialog_submission = SlackDialogSubmission.new(slack_dialog)
     # slack dialog input
-    recept_date = slack_dialog["submission"]["date"]
-    recept_time = slack_dialog["submission"]["time"]
-    recept_company_name = slack_dialog["submission"]["company_name"]
-    recept_visitor_name = slack_dialog["submission"]["name"]
-    slack_id = slack_dialog["user"]["id"]
+    recept_date = dialog_submission.recept_date
+    recept_time = dialog_submission.recept_time
+    recept_company_name = dialog_submission.company_name
+    recept_visitor_name = dialog_submission.visitor_name
+    slack_id = dialog_submission.slack_user_id
 
     # srd-gate login
     agent = Mechanize.new
