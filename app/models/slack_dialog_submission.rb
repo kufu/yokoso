@@ -8,6 +8,7 @@ class SlackDialogSubmission
   # @param post_body [Hash]
   def initialize(post_body)
     @post_body = post_body.deep_symbolize_keys
+    @values = @post_body.dig(:view, :state, :values)
   end
 
   # @return [String]
@@ -22,21 +23,21 @@ class SlackDialogSubmission
 
   # @return [String]
   def recept_date
-    @post_body.dig(:submission, :date)
+    @values[:recept_date][:recept_date][:selected_option][:value]
   end
 
   # @return [String]
   def recept_time
-    @post_body.dig(:submission, :time)
+    @values[:recept_time][:recept_time][:selected_option][:value]
   end
 
   # @return [String]
   def company_name
-    @post_body.dig(:submission, :company_name)
+    @values[:recept_company][:recept_company][:value]
   end
 
   # @return [String]
   def visitor_name
-    @post_body.dig(:submission, :name)
+    @values[:recept_name][:recept_name][:value]
   end
 end
