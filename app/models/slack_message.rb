@@ -17,7 +17,7 @@ class SlackMessage
     post_body = new(modal_submission:)
                 .send(:received_message_post_body)
 
-    ChatMessageSender.new.post_private_message(post_body)
+    ChatMessageSender.new.post_ephemeral_message(post_body)
   end
 
   private
