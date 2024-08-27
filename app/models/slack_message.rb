@@ -27,7 +27,7 @@ class SlackMessage
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def received_message_post_body
-    { icon_emoji: MESSAGES["intarctive"]["icon"],
+    { icon_emoji: MESSAGES["interactive"]["icon"],
       channel: @modal_submission.slack_channel_id,
       user: @modal_submission.slack_user_id,
       text:,
@@ -36,9 +36,9 @@ class SlackMessage
 
   def text
     if send_to_direct_message?
-      MESSAGES["intarctive"]["dm_text_notification"]
+      MESSAGES["interactive"]["dm_text_notification"]
     else
-      MESSAGES["intarctive"]["text_notification"]
+      MESSAGES["interactive"]["text_notification"]
     end
   end
 
@@ -53,11 +53,11 @@ class SlackMessage
   def received_message_attachment_fields
     [
       attachment_field(
-        title: MESSAGES["intarctive"]["recept_name"],
+        title: MESSAGES["interactive"]["recept_name"],
         value: "#{@modal_submission.company_name} #{@modal_submission.visitor_name} 様"
       ),
       attachment_field(
-        title: MESSAGES["intarctive"]["recept_datetime"],
+        title: MESSAGES["interactive"]["recept_datetime"],
         value: "#{@modal_submission.recept_date} #{@modal_submission.recept_time}"
       )
     ]
