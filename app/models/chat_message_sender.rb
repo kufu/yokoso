@@ -12,12 +12,4 @@ class ChatMessageSender
   def post_public_message(post_body)
     @slack_api_client.chat_postMessage(post_body)
   end
-
-  # 特定のユーザーだけに見える形で投稿
-  # @param post_body [Hash]
-  # @see https://api.slack.com/methods/chat.postEphemeral
-  # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
-  def post_ephemeral_message(post_body)
-    @slack_api_client.chat_postEphemeral(post_body)
-  end
 end
