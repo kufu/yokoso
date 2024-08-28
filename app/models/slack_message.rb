@@ -17,7 +17,7 @@ class SlackMessage
     post_body = new(modal_submission:)
                 .send(:received_message_post_body)
 
-    ChatMessageSender.new.post_ephemeral_message(post_body)
+    ChatMessageSender.new.post_public_message(post_body)
   end
 
   private
@@ -28,8 +28,7 @@ class SlackMessage
   # @private
   def received_message_post_body
     { icon_emoji: MESSAGES["interactive"]["icon"],
-      channel: @modal_submission.slack_channel_id,
-      user: @modal_submission.slack_user_id,
+      channel: @modal_submission.slack_user_id,
       text:,
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
@@ -40,6 +39,10 @@ class SlackMessage
     else
       MESSAGES["interactive"]["text_notification"]
     end
+  end
+
+  def send_to_channel_message?
+    %w[CHANNEL BOTH].include?(ENV.fetch("SEND_MODE"))
   end
 
   # @private

@@ -17,11 +17,6 @@ class SlackModalSubmission
   end
 
   # @return [String]
-  def slack_channel_id
-    ENV.fetch("SLACK_CHANNEL", slack_user_id)
-  end
-
-  # @return [String]
   def recept_date
     @values[:recept_date][:recept_date][:selected_option][:value]
   end
