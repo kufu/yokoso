@@ -3,21 +3,21 @@
 require "mechanize"
 require "sidekiq"
 require "slack-ruby-client"
-require_relative "../models/slack_dialog_submission"
+require_relative "../models/slack_modal_submission"
 require_relative "../models/slack_message"
 
 class ReceptionWorker
   include Sidekiq::Worker
   sidekiq_options queue: :default, retry: false
 
-  def perform(slack_dialog)
-    dialog_submission = SlackDialogSubmission.new(slack_dialog)
-    # slack dialog input
-    recept_date = slack_dialog["submission"]["date"]
-    recept_time = slack_dialog["submission"]["time"]
-    recept_company_name = slack_dialog["submission"]["company_name"]
-    recept_visitor_name = slack_dialog["submission"]["name"]
-    slack_id = slack_dialog["user"]["id"]
+  def perform(slack_modal)
+    modal_submission = SlackModalSubmission.new(slack_modal)
+    # slack modal input
+    recept_date = modal_submission.recept_date
+    recept_time = modal_submission.recept_time
+    recept_company_name = modal_submission.company_name
+    recept_visitor_name = modal_submission.visitor_name
+    slack_id = modal_submission.slack_user_id
 
     # srd-gate login
     agent = Mechanize.new
@@ -46,6 +46,6 @@ class ReceptionWorker
     # regist
     agent.page.form.submit
 
-    SlackMessage.post_received_message(dialog_submission)
+    SlackMessage.post_received_message(modal_submission)
   end
 end

@@ -6,19 +6,18 @@ class SlackMessage
   # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
   MESSAGES = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) }
 
-  # @param dialog_submission [SlackDialogSubmission]
-  # @param dialog_submission [Email]
-  def initialize(dialog_submission: nil)
-    @dialog_submission = dialog_submission
+  # @param modal_submission [SlackModalSubmission]
+  def initialize(modal_submission: nil)
+    @modal_submission = modal_submission
   end
 
   # Factory Method
-  # @param dialog_submission [SlackDialogSubmission]
-  def self.post_received_message(dialog_submission)
-    post_body = new(dialog_submission:)
+  # @param modal_submission [SlackModalSubmission]
+  def self.post_received_message(modal_submission)
+    post_body = new(modal_submission:)
                 .send(:received_message_post_body)
 
-    ChatMessageSender.new.post_private_message(post_body)
+    ChatMessageSender.new.post_public_message(post_body)
   end
 
   private
@@ -28,19 +27,22 @@ class SlackMessage
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def received_message_post_body
-    { icon_emoji: MESSAGES["intarctive"]["icon"],
-      channel: @dialog_submission.slack_channel_id,
-      user: @dialog_submission.slack_user_id,
+    { icon_emoji: MESSAGES["interactive"]["icon"],
+      channel: @modal_submission.slack_user_id,
       text:,
       attachments: [attachment(fields: received_message_attachment_fields)] }
   end
 
   def text
     if send_to_direct_message?
-      MESSAGES["intarctive"]["dm_text_notification"]
+      MESSAGES["interactive"]["dm_text_notification"]
     else
-      MESSAGES["intarctive"]["text_notification"]
+      MESSAGES["interactive"]["text_notification"]
     end
+  end
+
+  def send_to_channel_message?
+    %w[CHANNEL BOTH].include?(ENV.fetch("SEND_MODE"))
   end
 
   # @private
@@ -54,12 +56,12 @@ class SlackMessage
   def received_message_attachment_fields
     [
       attachment_field(
-        title: MESSAGES["intarctive"]["recept_name"],
-        value: "#{@dialog_submission.company_name} #{@dialog_submission.visitor_name} 様"
+        title: MESSAGES["interactive"]["recept_name"],
+        value: "#{@modal_submission.company_name} #{@modal_submission.visitor_name} 様"
       ),
       attachment_field(
-        title: MESSAGES["intarctive"]["recept_datetime"],
-        value: "#{@dialog_submission.recept_date} #{@dialog_submission.recept_time}"
+        title: MESSAGES["interactive"]["recept_datetime"],
+        value: "#{@modal_submission.recept_date} #{@modal_submission.recept_time}"
       )
     ]
   end

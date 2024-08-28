@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "../models/slack_dialog"
+require_relative "../models/slack_modal"
 
 # @see https://api.slack.com/interactivity/slash-commands
 module SlackSlashCommand
   def run(request)
-    SlackDialog.open(request["trigger_id"])
+    SlackModal.open(request["trigger_id"])
 
     ""
   end
