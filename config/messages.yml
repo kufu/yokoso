@@ -22,6 +22,7 @@ notification:
     ```
     ◆日時
     RECEPT_DATE
+
     ◆場所
     〒106-6217
     東京都港区六本木3-2-1
@@ -29,9 +30,11 @@ notification:
     https://office.sumitomo-rd.co.jp/building/detail/minato/roppongi_3
     南北線｢六本木一丁目駅｣西改札直結
     日比谷線・大江戸線｢六本木駅」5番出口より徒歩5分
+
     ◆入館ID
     RECEPT_ID
     （URLクリックでバーコード画像が表示されます）
+
     ◆ビル入館方法
     ①（1Fまたは4F）セキュリティゲート前の受付機にバーコードをかざしていただく、もしくは入館IDを入力して下さい。
     ②受付機より「入館証」が発券されます。
@@ -39,6 +42,7 @@ notification:
     ③入館証のQRコードをゲートにかざし入館します。
     ④ゲート左手15F〜20F用のエレベータにて17Fへお越しください。
     ⑤SmartHR受付のiPadより担当者をお呼び出しください。
+
     ◆SmartHRオフィスの行き方
     https://shanaiho.smarthr.co.jp/n/na0b9906ec236
     ※注意点
@@ -48,8 +52,10 @@ notification:
     ```
     <Appointed day>
     RECEPT_DATE
+
     <Address>
     Sumitomo Fudosan Roppongi Grand Tower 17F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6217
+
     <How to enter>
     Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
     You can print out as many tickets as you need with this ID/barcode.
