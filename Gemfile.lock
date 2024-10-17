@@ -122,7 +122,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    roda (3.84.0)
+    roda (3.85.0)
       rack
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
