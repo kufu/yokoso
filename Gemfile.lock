@@ -113,7 +113,7 @@ GEM
       method_source (~> 1.0)
     public_suffix (6.0.1)
     racc (1.8.1)
-    rack (3.1.7)
+    rack (3.1.8)
     rackup (2.1.0)
       rack (>= 3)
       webrick (~> 1.8)
@@ -156,8 +156,7 @@ GEM
       base64
     securerandom (0.3.1)
     shellany (0.0.1)
-    sidekiq (7.3.2)
-      concurrent-ruby (< 2)
+    sidekiq (7.3.5)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
