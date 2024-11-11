@@ -39,7 +39,9 @@ class AdmissionCodeMessage
       attachments: [
         color: "good",
         fields: attachment_fields
-      ] }
+      ],
+      as_user: true
+    }
   end
 
   def api_post_body_direct_message
@@ -49,7 +51,9 @@ class AdmissionCodeMessage
       attachments: [
         color: "good",
         fields: attachment_fields
-      ] }
+      ],
+      as_user: true
+    }
   end
 
   # @return [Array] attachment_field array
@@ -61,9 +65,6 @@ class AdmissionCodeMessage
         short: true },
       { title: MESSAGES["notification"]["recept_datetime"],
         value: @email.recept_date,
-        short: true },
-      { title: MESSAGES["notification"]["recept_id"],
-        value: @email.recept_id,
         short: true }
     ]
   end
