@@ -9,8 +9,6 @@ require_relative "../models/qr_code_pdf"
 
 require "securerandom"
 
-require "pry"
-
 module SlackNotification
   def run(request)
     mail_body = request["body"]
