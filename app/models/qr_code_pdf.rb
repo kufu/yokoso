@@ -28,7 +28,7 @@ class QrCodePdf
   def entry_qr_code_path
     qr_code_path = "#{@prefix}_qr_code"
 
-    Dir.glob("#{qr_code_path}/Mobile_QR*")
+    Dir.glob("#{qr_code_path}/*pdf")
   end
 
   def cleanup
