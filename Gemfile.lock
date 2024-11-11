@@ -154,6 +154,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyntlm (0.6.5)
       base64
+    rubyzip (2.3.2)
     securerandom (0.3.1)
     shellany (0.0.1)
     sidekiq (7.3.2)
@@ -183,13 +184,16 @@ DEPENDENCIES
   activesupport
   byebug
   config
+  faraday
   guard
   guard-rspec
   mechanize
+  pry
   rackup
   roda
   rspec (~> 3.12)
   rubocop
+  rubyzip
   sidekiq
   slack-ruby-client
 

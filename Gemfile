@@ -8,11 +8,13 @@ ruby File.read(".ruby-version").rstrip
 
 gem "activesupport"
 gem "config"
+gem "faraday"
 gem "mechanize"
 gem "rackup"
 gem "roda"
 gem "sidekiq"
 gem "slack-ruby-client"
+gem "rubyzip"
 
 group :development do
   gem "byebug"
@@ -23,4 +25,5 @@ end
 group :development, :test do
   gem "rspec", "~> 3.12"
   gem "rubocop"
+  gem "pry"
 end
