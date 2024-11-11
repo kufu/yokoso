@@ -33,6 +33,8 @@ module SlackNotification
       direct_message_id: res["channel"]
     )
 
+    qrcode.cleanup
+
     ""
   end
 
