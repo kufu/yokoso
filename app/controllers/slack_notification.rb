@@ -30,7 +30,7 @@ module SlackNotification
         as_user: true
       },
       file_paths: qrcode.entry_qr_code_path,
-      direct_message_id: res["channel"],
+      direct_message_id: res["channel"]
     )
 
     ""

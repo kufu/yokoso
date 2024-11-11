@@ -40,8 +40,7 @@ class AdmissionCodeMessage
         color: "good",
         fields: attachment_fields
       ],
-      as_user: true
-    }
+      as_user: true }
   end
 
   def api_post_body_direct_message
@@ -52,8 +51,7 @@ class AdmissionCodeMessage
         color: "good",
         fields: attachment_fields
       ],
-      as_user: true
-    }
+      as_user: true }
   end
 
   # @return [Array] attachment_field array

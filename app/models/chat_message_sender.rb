@@ -18,12 +18,12 @@ class ChatMessageSender
       files = file_paths.map do |file_path|
         res = @slack_api_client.files_getUploadURLExternal(
           filename: File.basename(file_path),
-          length: File.size(file_path),
+          length: File.size(file_path)
         )
 
-        file_urls.push({url: res.upload_url, file_path: file_path})
+        file_urls.push({ url: res.upload_url, file_path: file_path })
 
-        { id: res.file_id, title: File.basename(file_path)}
+        { id: res.file_id, title: File.basename(file_path) }
       end
 
       file_urls.each do |file_url_and_path|
