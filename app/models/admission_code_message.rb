@@ -63,6 +63,9 @@ class AdmissionCodeMessage
         short: true },
       { title: MESSAGES["notification"]["recept_datetime"],
         value: @email.recept_date,
+        short: true },
+      { title: MESSAGES["notification"]["recept_id"],
+        value: @email.recept_id,
         short: true }
     ]
   end
