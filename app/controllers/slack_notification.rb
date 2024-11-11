@@ -5,48 +5,32 @@ require "slack-ruby-client"
 require_relative "../models/email"
 require_relative "../models/chat_message_sender"
 require_relative "../models/admission_code_message"
+require_relative "../models/qr_code_pdf"
+
+require "securerandom"
 
 module SlackNotification
   def run(request)
     mail_body = request["body"]
     email = Email.new(mail_body)
 
-    # TODO: fix Ruby 3.1+ https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Security/YAMLLoadQ
-    messages = open("./config/messages.yml", "r") { |f| YAML.unsafe_load(f) }
-
     res = AdmissionCodeMessage.new(email).post
 
-    barcode_url = "https://barcode.tec-it.com/barcode.ashx?data=#{email.recept_id}&code=Code128"
-    text_guide_jap = messages["notification"]["text_guide_jap"]
-    text_guide_eng = messages["notification"]["text_guide_eng"]
-
-    text_guide_jap.gsub!("RECEPT_ID", "#{email.recept_id}\n#{barcode_url}")
-    text_guide_eng.gsub!("RECEPT_ID", "#{email.recept_id}\n#{barcode_url}")
-
-    day_of_the_week_eg2jp = {
-      "Sun" => "日",
-      "Mon" => "月",
-      "Tue" => "火",
-      "Wed" => "水",
-      "Thu" => "木",
-      "Fri" => "金",
-      "Sat" => "土"
-    }
-    recept_date_jap = email.recept_date.gsub(/([a-zA-Z]{3})/, day_of_the_week_eg2jp)
-    text_guide_jap.gsub!("RECEPT_DATE", recept_date_jap)
-    text_guide_eng.gsub!("RECEPT_DATE", email.recept_date)
+    zapier_pdf_url = request["pdf"]
+    file_name_prefix = SecureRandom.alphanumeric(10)
+    qrcode = QrCodePdf.new(zapier_pdf_url, file_name_prefix)
+    qrcode.download
+    qrcode.unzip
 
     ChatMessageSender.new.post_public_message(
-      icon_emoji: ":office:",
-      channel: res.channel,
-      text: "#{text_guide_jap}\n#{text_guide_eng}",
-      attachments: [
-        {
-          title: "バーコード/Barcode",
-          image_url: barcode_url
-        }
-      ],
-      thread_ts: res.ts
+      {
+        icon_emoji: ":office:",
+        channel: email.slack_id,
+        text: "入館用QRコードを生成しました",
+        as_user: true
+      },
+      file_paths: qrcode.entry_qr_code_path,
+      direct_message_id: res["channel"],
     )
 
     ""
