@@ -52,11 +52,15 @@ notification:
     <Address>
     Sumitomo Fudosan Roppongi Grand Tower 17F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6217
 
-    <How to enter>
-    Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
-    You can print out as many tickets as you need with this ID/barcode.
-    These admission tickets are required to enter and exit the building gates, so please hold on to them.
+    <Recept ID>
     RECEPT_ID
-    Take the elevator on your left to the 17th floor.
+
+    <How to enter>
+    1. Hold the QR code in the attached PDF over the gate to enter the building.
+    2. Take the elevator to the left of the gate for floors 15-20 to the 17th floor.
+    3. Call a staff member using the iPad at the SmartHR reception desk.
+    
+    Note: You will need your admission pass until you leave the building. Please keep it safe.
+
     ```
   <<: *common
