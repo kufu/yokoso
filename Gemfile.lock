@@ -114,10 +114,9 @@ GEM
       method_source (~> 1.0)
     public_suffix (6.0.1)
     racc (1.8.1)
-    rack (3.1.7)
-    rackup (2.1.0)
+    rack (3.1.8)
+    rackup (2.2.1)
       rack (>= 3)
-      webrick (~> 1.8)
     rainbow (3.1.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
@@ -174,7 +173,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     uri (1.0.1)
-    webrick (1.8.2)
+    webrick (1.9.0)
     webrobots (0.1.2)
 
 PLATFORMS
