@@ -4,7 +4,7 @@
 
 require "faraday"
 class ChatMessageSender
-  def initialize
+  def initialize(direct_message_id: nil)
     @slack_api_client = Slack::Web::Client.new(token: ENV.fetch("SLACK_TOKEN"))
   end
 

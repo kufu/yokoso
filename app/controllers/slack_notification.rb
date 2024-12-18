@@ -43,7 +43,7 @@ module SlackNotification
     qrcode.download
     qrcode.unzip
 
-    ChatMessageSender.new.post_public_message(
+    ChatMessageSender.new(direct_message_id: res["channel"]).post_admission_badge_message(
       {
         icon_emoji: ":office:",
         channel: email.slack_id,
@@ -51,7 +51,6 @@ module SlackNotification
         as_user: true
       },
       file_paths: qrcode.entry_qr_code_path,
-      direct_message_id: res["channel"]
     )
 
     qrcode.cleanup
