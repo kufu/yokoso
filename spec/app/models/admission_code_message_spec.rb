@@ -10,26 +10,28 @@ describe AdmissionCodeMessage do
   let(:email) { Email.new(email_fixture) }
   let!(:email_fixture) do
     <<~EMAIL_BODY
-      To:【U9999999999】株式会社smarthr hoge piyo 様<BR>
-      <BR>
-      平素は格別なご高配を賜り、厚く御礼申し上げます。株式会社SmartHRです。<BR>
-      以下のとおり入館申請を行いました。<BR>
-      I have registered your admission application as below.<BR>
-      =========================================================<BR>
-      <BR>
-      ■　ご来訪日時/Date<BR>
-      2022/03/31(Thu) 18:00<BR>
-      <BR>
-      ■　ビル/Building<BR>
-      住友不動産六本木グランドタワー/SUMITOMO FUDOSAN ROPPONGI GRAND TOWER<BR>
-      <BR>
-      ■　バーコード/Barcode<BR>
-      入館ID/Guest ID:12345678901<BR>
-      <BR>
-      　　<img src='12345678901.BMP' width='200'><BR>
-      <BR>
+      To:【U9999999999】test test(test) 様<BR>\r
+      <BR>\r
+      平素は格別なご高配を賜り、厚く御礼申し上げます。株式会社SmartHRです。<BR>\r
+      以下のとおり入館申請を行いました。<BR>\r
+      I have registered your admission application as below.<BR>\r
+      <BR>\r
+      =========================================================<BR>\r
+      <BR>\r
+      ■　ご来訪日時/Date<BR>\r
+      2024/12/18(Wed) 10:00<BR>\r
+      <BR>\r
+      ■　ビル/Building<BR>\r
+      住友不動産六本木グランドタワー/SUMITOMO FUDOSAN ROPPONGI GRAND TOWER<BR>\r
+      東京都港区六本木3-2-1<BR>\r
+      <BR>\r
+      ■　入館ＩＤ/Guest ID<BR>\r
+      54620<BR>\r
+      <BR>\r
+      <BR>\r
     EMAIL_BODY
   end
+
 
   describe "#post" do
     context "SEND_MODE が CHANNEL の場合" do
