@@ -21,8 +21,8 @@ module SlackNotification
     text_guide_jap = messages["notification"]["text_guide_jap"]
     text_guide_eng = messages["notification"]["text_guide_eng"]
 
-    text_guide_jap.gsub!("RECEPT_ID", "#{email.recept_id}")
-    text_guide_eng.gsub!("RECEPT_ID", "#{email.recept_id}")
+    text_guide_jap.gsub!("RECEPT_ID", email.recept_id.to_s)
+    text_guide_eng.gsub!("RECEPT_ID", email.recept_id.to_s)
 
     day_of_the_week_eg2jp = {
       "Sun" => "日",
@@ -50,7 +50,7 @@ module SlackNotification
         text: "#{text_guide_jap}\n#{text_guide_eng}",
         as_user: true
       },
-      file_paths: qrcode.entry_qr_code_path,
+      file_paths: qrcode.entry_qr_code_path
     )
 
     qrcode.cleanup
