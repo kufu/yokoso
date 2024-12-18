@@ -6,6 +6,9 @@ require "slack-ruby-client"
 require_relative "../models/slack_modal_submission"
 require_relative "../models/slack_message"
 require_relative "../../config/initializers/sidekiq"
+
+require "dotenv"
+Dotenv.load
 class ReceptionWorker
   include Sidekiq::Worker
   sidekiq_options queue: :default, retry: false

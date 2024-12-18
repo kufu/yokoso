@@ -36,7 +36,6 @@ describe AdmissionCodeMessage do
     EMAIL_BODY
   end
 
-
   describe "#post" do
     context "SEND_MODE が CHANNEL の場合" do
       it "post_public_message が1回呼ばれること" do
