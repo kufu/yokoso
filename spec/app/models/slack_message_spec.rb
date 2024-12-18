@@ -31,6 +31,7 @@ describe SlackMessage do
         allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("CHANNEL")
 
         expected = {
+          as_user: true,
           channel: "UCKTXCBRB",
           icon_emoji: ":office:",
           text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray:",
@@ -48,6 +49,7 @@ describe SlackMessage do
         allow(ENV).to receive(:fetch).with("SEND_MODE").and_return("DM")
 
         expected = {
+          as_user: true,
           channel: "UCKTXCBRB",
           icon_emoji: ":office:",
           text: "以下の内容で受け付けました。受け付け完了までしばらくお待ちください :pray: \n受付が完了すると入館IDとバーコードがslackbotで届きます:mailbox_with_mail:",
