@@ -83,6 +83,7 @@ describe AdmissionCodeMessage do
     end
     it "API post body が返ってくる" do
       expected = {
+        as_user: true,
         icon_emoji: ":office:",
         channel: "CH15TJXEX",
         text: "<@U9999999999> 入館受付が完了しました :tada:",
