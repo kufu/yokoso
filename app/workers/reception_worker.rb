@@ -7,6 +7,8 @@ require_relative "../models/slack_modal_submission"
 require_relative "../models/slack_message"
 require_relative "../../config/initializers/sidekiq"
 
+require "dotenv"
+Dotenv.load
 class ReceptionWorker
   include Sidekiq::Worker
   sidekiq_options queue: :default, retry: false
@@ -41,7 +43,7 @@ class ReceptionWorker
     agent.page.form.field_with(name: "mei[]").value = recept_visitor_name.gsub(/[[:punct:]]/, "")
     agent.page.form.field_with(name: "kana[]").value = "カナ"
     agent.page.form.field_with(name: "mail[]").value = ENV.fetch("MAIL_ADDRESS_WEBHOOK")
-    agent.page.form.field_with(name: "sinseiemail").value = ENV.fetch("MAIL_ADDRESS_HOST")
+    agent.page.form.field_with(name: "sinseiemail1").value = ENV.fetch("MAIL_ADDRESS_HOST")
     agent.page.form.field_with(name: "sinseitel").value = ENV.fetch("COMPANY_TEL")
 
     # regist

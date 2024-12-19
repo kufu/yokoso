@@ -7,6 +7,18 @@
 
 <img src="https://github.com/kufu/yokoso/blob/images/sample_animation.gif?raw=true" width="480px">
 
+# 対応入館証について
+
+`yokoso` はビル来客システムの連携させるツールですが、来客システムには以下の2つの仕様が確認されています。
+
+- 2次元バーコードを発行するタイプ
+- QRコードを発行するタイプ
+
+本repositoryの所有者であるSmartHRがオフィスをお借りしているビルでは、後者のQRコードを発行するタイプが使用されています。
+それに合わせて、mainブランチの仕様もQRコードを発行するタイプの来客システムに対応したものになっています。
+また、2次元バーコードを発行するタイプのシステムは利用できなくなったため、そちらの仕様については積極的に保守ができなくなりました。したがって、そちらの仕様については `2D-code` ブランチに切り離しております。
+ご利用される環境に合わせてブランチを選定、設定をお願いします。
+
 # 全体像
 
 <img src="https://github.com/kufu/yokoso/blob/images/diagram.png?raw=true" width="640px">
@@ -86,6 +98,8 @@ heroku local -e .env
 - webhook アドレスは `https://{{server_url}}/app/notification`
 - サービスは何でも良い
   - zapier なら [コチラ](https://zapier.com/app/editor/template/9205?selected_apis=ZapierMailAPI%2CWebHookAPI)
+    - 先述のQRコードを用いるタイプの来客システムの場合、2次元バーコードのタイプとは異なり入館IDからコードの生成を行えなくなっています（入館IDとQRコードを複合したデータが異なる）
+    - そのため、添付ファイルをWebhookに含める形でpostするよう設定してください。その時のKeyは `pdf` にしてください
   - 参考: <img src="https://github.com/kufu/yokoso/blob/images/zapier.png?raw=true" width="480px">
 - Webhook 用メールアドレスは後でサーバサイド環境変数へセットする
 

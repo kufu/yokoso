@@ -32,19 +32,13 @@ notification:
     日比谷線・大江戸線｢六本木駅」5番出口より徒歩5分
 
     ◆ 入館ID
-    RECEPT_ID
-    （URLクリックでバーコード画像が表示されます）
+    RECEPT_ID  
 
     ◆ ビル入館方法
-    ①（1Fまたは4F）セキュリティゲート前の受付機にバーコードをかざしていただく、もしくは入館IDを入力して下さい。
-    ②受付機より「入館証」が発券されます。
-    （複数名でご来社の場合は人数分の発券をお願いいたします。同一バーコード/IDをご利用いただけます）
-    ③入館証のQRコードをゲートにかざし入館します。
-    ④ゲート左手15F〜20F用のエレベータにて17Fへお越しください。
-    ⑤SmartHR受付のiPadより担当者をお呼び出しください。
-
-    ◆ SmartHRオフィスの行き方
-    https://shanaiho.smarthr.co.jp/n/na0b9906ec236
+    ①添付のPDFのQRコードをゲートにかざし入館します。(複数名でご来社の場合でも、同一QRコードをご利用いただけます。)
+    ②15F〜20F用のエレベータにて17Fへお越しください。
+    ③SmartHR受付のiPadより担当者をお呼び出しください。
+    
     ※注意点
     「入館証」はご退館時まで必要です。大切にお持ち下さい。
     ```
@@ -56,11 +50,15 @@ notification:
     <Address>
     Sumitomo Fudosan Roppongi Grand Tower 17F,  3-2-1 Roppongi, Minato-ku, Tokyo 106-6217
 
-    <How to enter>
-    Please print out your admission tickets at the reception machine on the first or fourth floor, using the ID or barcode below.
-    You can print out as many tickets as you need with this ID/barcode.
-    These admission tickets are required to enter and exit the building gates, so please hold on to them.
+    <Recept ID>
     RECEPT_ID
-    Take the elevator on your left to the 17th floor.
+
+    <How to enter>
+    1. Hold the QR code in the attached PDF over the gate to enter the building. The same QR code can be used even if multiple people are visiting the company.
+    2. Take the elevator for floors 15-20 to the 17th floor.
+    3. Call the person in charge using the iPad at the SmartHR reception desk.
+    
+    Note: You will need your admission pass until you leave the building. Please keep it safe.
+
     ```
   <<: *common
