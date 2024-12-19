@@ -8,6 +8,7 @@ ruby File.read(".ruby-version").rstrip
 
 gem "activesupport"
 gem "config"
+gem "dotenv"
 gem "faraday"
 gem "mechanize"
 gem "rackup"
@@ -18,7 +19,6 @@ gem "slack-ruby-client"
 
 group :development do
   gem "byebug"
-  gem "dotenv"
   gem "guard"
   gem "guard-rspec", require: false
 end
