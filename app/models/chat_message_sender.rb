@@ -64,6 +64,7 @@ class ChatMessageSender
         filename: File.basename(file_path),
         length: File.size(file_path)
       )
+
       { id: res.file_id, title: File.basename(file_path), url: res.upload_url, file_path: file_path }
     end
   end

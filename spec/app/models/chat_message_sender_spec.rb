@@ -61,22 +61,26 @@ describe ChatMessageSender do
 
       let(:upload_url_external_response) do
         Hashie::Mash.new({
-                          res: {
                             file_id: "F1234567890",
                             title: "qrcode.pdf",
                             url: "https://example.com/file_path",
                             file_path: "./tmp/qrcode.pdf"
-                          }
-                        })
+                         })
       end
 
-      let(:faraday_mock) { instance_double(Faraday) }
+      let(:faraday_mock) { instance_double(Faraday::Connection) }
+      let(:faraday_upload_io_mock) { instance_double(Faraday::UploadIO) }
 
+      let(:file_klass_mock) { class_double(File) }
       before do
         allow(Faraday).to receive(:new).and_return(faraday_mock)
         allow(faraday_mock).to receive(:post)
 
-        allow(sender).to receive(:upload_files).and_return(files)
+        allow(Faraday::UploadIO).to receive(:new).and_return(faraday_upload_io_mock)
+
+        allow(File).to receive(:size).with(file_paths[0]).and_return(100)
+        allow(File).to receive(:basename).with(file_paths[0]).and_return("qrcode.pdf")
+
         allow(slack_client_mock).to receive(:chat_postMessage).with(post_body).and_return(
           Hashie::Mash.new({ ts: posted_message_ts })
         )
