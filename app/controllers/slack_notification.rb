@@ -21,8 +21,8 @@ module SlackNotification
     text_guide_jap = messages["notification"]["text_guide_jap"]
     text_guide_eng = messages["notification"]["text_guide_eng"]
 
-    text_guide_jap.gsub!("RECEPT_ID", "#{email.recept_id}")
-    text_guide_eng.gsub!("RECEPT_ID", "#{email.recept_id}")
+    text_guide_jap.gsub!("RECEPT_ID", email.recept_id.to_s)
+    text_guide_eng.gsub!("RECEPT_ID", email.recept_id.to_s)
 
     day_of_the_week_eg2jp = {
       "Sun" => "日",
@@ -43,15 +43,14 @@ module SlackNotification
     qrcode.download
     qrcode.unzip
 
-    ChatMessageSender.new.post_public_message(
+    ChatMessageSender.new(direct_message_id: res["channel"]).post_admission_badge_message(
       {
         icon_emoji: ":office:",
         channel: email.slack_id,
         text: "#{text_guide_jap}\n#{text_guide_eng}",
         as_user: true
       },
-      file_paths: qrcode.entry_qr_code_path,
-      direct_message_id: res["channel"]
+      file_paths: qrcode.entry_qr_code_path
     )
 
     qrcode.cleanup

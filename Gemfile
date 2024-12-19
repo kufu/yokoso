@@ -8,6 +8,7 @@ ruby File.read(".ruby-version").rstrip
 
 gem "activesupport"
 gem "config"
+gem "dotenv"
 gem "faraday"
 gem "mechanize"
 gem "rackup"
@@ -23,6 +24,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "hashie"
   gem "pry"
   gem "rspec", "~> 3.12"
   gem "rubocop"
