@@ -61,10 +61,10 @@ describe ChatMessageSender do
 
       let(:upload_url_external_response) do
         Hashie::Mash.new({
-                            file_id: "F1234567890",
-                            title: "qrcode.pdf",
-                            url: "https://example.com/file_path",
-                            file_path: "./tmp/qrcode.pdf"
+                           file_id: "F1234567890",
+                           title: "qrcode.pdf",
+                           url: "https://example.com/file_path",
+                           file_path: "./tmp/qrcode.pdf"
                          })
       end
 

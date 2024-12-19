@@ -5,10 +5,11 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    env:
+      SLACK_TOKEN: "DUMMY"
     steps:
     - uses: actions/checkout@v3
     - name: Set up Ruby
