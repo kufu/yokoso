@@ -5,6 +5,9 @@ require_relative "app/controllers/slack_slash_command"
 require_relative "app/controllers/slack_interactive_message"
 require_relative "app/controllers/slack_notification"
 
+require "dotenv"
+Dotenv.load
+
 class App < Roda
   route do |r|
     r.post "app/dialog" do

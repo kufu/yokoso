@@ -27,10 +27,13 @@ class SlackMessage
   # @see https://github.com/slack-ruby/slack-ruby-client/blob/master/lib/slack/web/api/endpoints/chat.rb
   # @private
   def received_message_post_body
-    { icon_emoji: MESSAGES["interactive"]["icon"],
+    {
+      icon_emoji: MESSAGES["interactive"]["icon"],
       channel: @modal_submission.slack_user_id,
       text:,
-      attachments: [attachment(fields: received_message_attachment_fields)] }
+      attachments: [attachment(fields: received_message_attachment_fields)],
+      as_user: true
+    }
   end
 
   def text

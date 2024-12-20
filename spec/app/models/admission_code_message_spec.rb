@@ -8,26 +8,31 @@ require_relative "../../../app/models/chat_message_sender"
 describe AdmissionCodeMessage do
   let(:instance) { described_class.new(email) }
   let(:email) { Email.new(email_fixture) }
+  let!(:slack_id) { "U9999999999" }
+  let!(:reception_name) { "株式会社smarthr hoge piyo" }
+  let!(:invite_date) { "2024/12/18(Wed) 10:00" }
+  let!(:reception_id) { "12345" }
   let!(:email_fixture) do
     <<~EMAIL_BODY
-      To:【U9999999999】株式会社smarthr hoge piyo 様<BR>
-      <BR>
-      平素は格別なご高配を賜り、厚く御礼申し上げます。株式会社SmartHRです。<BR>
-      以下のとおり入館申請を行いました。<BR>
-      I have registered your admission application as below.<BR>
-      =========================================================<BR>
-      <BR>
-      ■　ご来訪日時/Date<BR>
-      2022/03/31(Thu) 18:00<BR>
-      <BR>
-      ■　ビル/Building<BR>
-      住友不動産六本木グランドタワー/SUMITOMO FUDOSAN ROPPONGI GRAND TOWER<BR>
-      <BR>
-      ■　バーコード/Barcode<BR>
-      入館ID/Guest ID:12345678901<BR>
-      <BR>
-      　　<img src='12345678901.BMP' width='200'><BR>
-      <BR>
+      To:【#{slack_id}】#{reception_name} 様<BR>\r
+      <BR>\r
+      平素は格別なご高配を賜り、厚く御礼申し上げます。株式会社SmartHRです。<BR>\r
+      以下のとおり入館申請を行いました。<BR>\r
+      I have registered your admission application as below.<BR>\r
+      <BR>\r
+      =========================================================<BR>\r
+      <BR>\r
+      ■　ご来訪日時/Date<BR>\r
+      #{invite_date}<BR>\r
+      <BR>\r
+      ■　ビル/Building<BR>\r
+      住友不動産六本木グランドタワー/SUMITOMO FUDOSAN ROPPONGI GRAND TOWER<BR>\r
+      東京都港区六本木3-2-1<BR>\r
+      <BR>\r
+      ■　入館ＩＤ/Guest ID<BR>\r
+      #{reception_id}<BR>\r
+      <BR>\r
+      <BR>\r
     EMAIL_BODY
   end
 
@@ -81,6 +86,7 @@ describe AdmissionCodeMessage do
     end
     it "API post body が返ってくる" do
       expected = {
+        as_user: true,
         icon_emoji: ":office:",
         channel: "CH15TJXEX",
         text: "<@U9999999999> 入館受付が完了しました :tada:",
@@ -99,10 +105,10 @@ describe AdmissionCodeMessage do
           value: "株式会社smarthr hoge piyo 様",
           short: true },
         { title: "訪問日時",
-          value: "2022/03/31(Thu) 18:00",
+          value: invite_date,
           short: true },
         { title: "入館ID",
-          value: "12345678901",
+          value: reception_id,
           short: true }
       ]
       expect(instance.send(:attachment_fields)).to eq expected
