@@ -157,7 +157,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyntlm (0.6.5)
       base64
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     securerandom (0.4.0)
     shellany (0.0.1)
     sidekiq (7.3.7)
