@@ -72,7 +72,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.5)
+    logger (1.6.6)
     lumberjack (1.2.10)
     mechanize (2.12.2)
       addressable (~> 2.8)
@@ -118,7 +118,7 @@ GEM
       method_source (~> 1.0)
     public_suffix (6.0.1)
     racc (1.8.1)
-    rack (3.1.8)
+    rack (3.1.10)
     rackup (2.2.1)
       rack (>= 3)
     rainbow (3.1.1)
@@ -161,7 +161,7 @@ GEM
     rubyzip (2.4.1)
     securerandom (0.4.0)
     shellany (0.0.1)
-    sidekiq (7.3.8)
+    sidekiq (7.3.9)
       base64
       connection_pool (>= 2.3.0)
       logger
