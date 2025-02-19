@@ -92,7 +92,7 @@ GEM
       logger
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.1001)
-    mini_portile2 (2.8.7)
+    mini_portile2 (2.8.8)
     minitest (5.25.4)
     multipart-post (2.4.1)
     nenv (0.3.0)
@@ -102,7 +102,7 @@ GEM
     net-http-persistent (4.0.4)
       connection_pool (~> 2.2)
     nkf (0.2.0)
-    nokogiri (1.16.7)
+    nokogiri (1.18.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     notiffany (0.1.3)
