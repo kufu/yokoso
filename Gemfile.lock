@@ -103,7 +103,7 @@ GEM
     net-http-persistent (4.0.4)
       connection_pool (~> 2.2)
     nkf (0.2.0)
-    nokogiri (1.18.3)
+    nokogiri (1.18.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     notiffany (0.1.3)
