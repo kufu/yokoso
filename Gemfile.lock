@@ -32,7 +32,7 @@ GEM
     domain_name (0.6.20240107)
     dotenv (3.1.8)
     drb (2.2.1)
-    faraday (2.13.0)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -68,7 +68,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    json (2.10.2)
+    json (2.11.3)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
     listen (3.9.0)
