@@ -36,7 +36,7 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-mashify (0.1.1)
+    faraday-mashify (1.0.0)
       faraday (~> 2.0)
       hashie
     faraday-multipart (1.1.0)
@@ -68,7 +68,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    json (2.11.3)
+    json (2.12.2)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -172,7 +172,7 @@ GEM
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
-    slack-ruby-client (2.5.2)
+    slack-ruby-client (2.6.0)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
