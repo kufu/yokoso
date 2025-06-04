@@ -26,6 +26,6 @@ end
 group :development, :test do
   gem "hashie"
   gem "pry"
-  gem "rspec", "~> 3.12"
+  gem "rspec", "~> 3.13"
   gem "rubocop"
 end
