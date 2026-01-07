@@ -1,6 +1,5 @@
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.3.2
   Exclude:
     - bin/*
     - spec/rails_helper.rb
