@@ -19,7 +19,7 @@
     {
       "groupName": "Ruby",
       "description": "Rubyバージョンの更新",
-      "matchManagers": ["ruby-version"],
+      "matchManagers": ["ruby-version","github-actions"],
       "enabled": true,
       "separateMinorPatch": true
     }
@@ -29,6 +29,5 @@
   "commitMessagePrefix": "chore:",
   "commitMessageTopic": "Ruby version",
   "commitMessageAction": "update to {{newVersion}}",
-  "prTitle": "chore: Ruby version update to {{newVersion}}",
   "prBodyTemplate": "このPRはRubyのバージョンを{{currentVersion}}から{{newVersion}}に更新します。\n\n**変更内容:**\n- `.ruby-version`ファイルの更新\n\n**確認事項:**\n- [ ] テストが通ることを確認\n- [ ] 依存関係に問題がないことを確認\n- [ ] CIが正常に動作することを確認\n\n---\n\n{{#if hasReleaseNotes}}\n{{{releaseNotes}}}\n{{/if}}\n\n{{#if hasChangelog}}\n{{{changelog}}}\n{{/if}}"
 }
