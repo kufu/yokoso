@@ -20,9 +20,14 @@
       "groupName": "Ruby",
       "description": "Rubyバージョンの更新",
       "matchManagers": ["ruby-version", "github-actions"],
-      "matchDepTypes": ["ruby-version"],
       "enabled": true,
       "separateMinorPatch": true
+    },
+    {
+      "description": "GitHub Actionsのアクション自体の更新を無効化",
+      "matchManagers": ["github-actions"],
+      "matchPackagePatterns": ["^actions/", "^ruby/setup-ruby$"],
+      "enabled": false
     }
   ],
   "prConcurrentLimit": 1,
